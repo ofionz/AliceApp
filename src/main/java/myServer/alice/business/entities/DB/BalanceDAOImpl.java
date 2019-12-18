@@ -9,15 +9,22 @@ import java.util.List;
 public class BalanceDAOImpl implements BalanceDAO {
 
 
+
+/*This method selects only one balance from several,
+ if it happened because in normal
+ mode, the Balance  is only one ore return "0 balance"  if can not find any balance.
+*/
     private Balance selectLastBalance(List<Balance> lst) {
         if (lst == null || lst.size() == 0) {
             Balance bl = new Balance();
-            bl.setAmount(-99999999);
+            bl.setAmount(0);  // set 0 in balance because lst is empty
             bl.setDate(LocalDate.of(1900, 1, 1));
             return bl;
         }
+
         Balance maxDate = null;
 
+        //here we are looking last time balance and delete older
         for (Balance bal : lst) {
 
             if (maxDate == null) {
@@ -29,24 +36,24 @@ public class BalanceDAOImpl implements BalanceDAO {
                 } else {
                     delete(bal);
                 }
-
             }
-
         }
         return maxDate;
     }
 
 
+    /**
+     * Function return current Balance and delete other/older copy of balances
+     * if it exists
+     * @return  {@link Balance}
+     */
+
     public Balance getBalance() {
-
-
         List<Balance> balance = (List<Balance>) HibernateSessionFactoryUtil
                 .getSessionFactory()
                 .openSession()
                 .createQuery("from myServer.alice.business.entities.Balance")
                 .list();
-
-
         return selectLastBalance(balance);
     }
 
