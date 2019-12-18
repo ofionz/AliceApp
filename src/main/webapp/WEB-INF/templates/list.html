@@ -141,15 +141,16 @@
 <script>
 
 
+
     function getTimeRemaining(endtime) {
         var t = Date.parse(endtime) - Date.parse(new Date());
         var seconds = Math.floor((t / 1000) % 60);
         var minutes = Math.floor((t / 1000 / 60) % 60);
         var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-        if (hours < 0 || minutes < 0 || seconds < 0) {
-            hours = 0;
-            minutes = 0;
-            seconds = 0;
+        if (hours<0||minutes<0||seconds<0){
+            hours=0;
+            minutes=0;
+            seconds=0;
         }
         return {
             'total': t,
@@ -175,12 +176,10 @@
                 clearInterval(timeinterval);
             }
         }
-
         updateClock();
         var timeinterval = setInterval(updateClock, 1000);
     }
-
-    var deadtime = new Date();
+    var deadtime = new Date ();
     deadtime.setHours(20);
     deadtime.setMinutes(00);
     deadtime.setSeconds(00);
@@ -189,15 +188,14 @@
 
     initializeClock('countdown', deadline);
 
-
     function fun1(chbox) {
         var form = document.createElement('form');
         form.action = '/alice/list';
         form.method = 'POST';
-        var value = 'status><br><input name="id" value=' + chbox.id + '>';
+        var value='status><br><input name="id" value='+chbox.id+'>';
 
-        var name = '<input name="type" value=' + value;
-        form.innerHTML = name;
+        var name =  '<input name="type" value='+value;
+        form.innerHTML =name;
 
         document.body.append(form);
         form.submit();
@@ -206,8 +204,8 @@
     }
 
 
-    <
-    /script>
+
+    </script>
 
     < script
     type = text / javascript >
