@@ -4,10 +4,10 @@ import myServer.alice.business.entities.Balance;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import org.apache.log4j.Logger;
 
 public class BalanceDAOImpl implements BalanceDAO {
-
+    private static final Logger log = Logger.getLogger(HibernateSessionFactoryUtil.class);
 
 
 /*This method selects only one balance from several,
@@ -19,6 +19,7 @@ public class BalanceDAOImpl implements BalanceDAO {
             Balance bl = new Balance();
             bl.setAmount(0);  // set 0 in balance because lst is empty
             bl.setDate(LocalDate.of(1900, 1, 1));
+            log.warn("Balance in DB = null, select last balance return 0");
             return bl;
         }
 
@@ -30,6 +31,7 @@ public class BalanceDAOImpl implements BalanceDAO {
             if (maxDate == null) {
                 maxDate = bal;
             } else {
+                log.warn("multiple balances !!!");
                 if (maxDate.getDate().compareTo(bal.getDate()) <= 0) {
                     delete(maxDate);
                     maxDate = bal;
