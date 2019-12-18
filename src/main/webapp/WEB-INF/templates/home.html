@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/home.css" th:href="@{/css/home.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <header class="header"><h1>Здравствуй, Алиса!</h1></header>
+    <div class="pages">
+        <div class="tasks_page">
+            <img th:src="@{/img/task_icon.png}" src="../../img/task_icon.png" width="120px">
+            <span><a href="list.html" th:href="@{/list}">Список заданий</a></span></div>
+        <div class="shop_page">
+            <img src="../../img/shop_icon.png" th:src="@{/img/shop_icon.png}" width="110px">
+            <span><a href="shop.html" th:href="@{/shop}">Магазин Хижины</a></span>
+        </div>
+        <div class="settings_page">
+            <img src="../../img/setttings_icon.png" th:src="@{/img/setttings_icon.png}" width="120px">
+            <span><a href="settings.html" th:href="@{/settings}">Настройки</a></span>
+        </div>
+
+
+    </div>
+    <footer class="footer">
+        <h2>У тебя всё получится!</h2>
+        <img src="../../img/footer_icon.png" th:src="@{/img/footer_icon.png}" width="220px;">
+    </footer>
+</div>
+</body>
+
+
+</html>

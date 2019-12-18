@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+.countdown {
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 700;
+    text-align: center;
+    font-size: 18px;
+}
+
+.countdown-number {
+    padding: 8px;
+    border-radius: 7px;
+    background: #ae380878;
+    display: inline-block;
+}
+
+.countdown-time {
+    padding: 10px;
+    border-radius: 3px;
+    background: #7157448a;
+    display: inline-block;
+}
+
+.countdown-text {
+    display: block;
+    padding-top: 2px;
+    font-size: 10px;
+}
+
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgb(13, 56, 54);
+    background: url(../img/bg_list.jpg);
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+    letter-spacing: 2px;
+}
+
+.daytasks_head, .dayend {
+    min-height: 6vh;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background: url(../img/Gravity_Falls_logo.svgUPPER.png) repeat-x;
+    background-size: contain;
+}
+
+dialog {
+    background: rgba(255, 255, 255, 0.91);
+    text-align: center;
+    color: rgb(13, 56, 54);
+    width: 300px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-left: 530px;
+}
+
+#close {
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgba(249, 129, 77, 0.81);
+    font-size: 25px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.points_balance {
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
+    border: 4px solid #000;
+    border-radius: 40px;
+}
+
+.points_all {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 70px;
+    font-weight: 800;
+    color: rgba(255, 226, 0, 0.94);
+    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
+    #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
+    rgb(13, 56, 54) 9px 5px 0;
+}
+
+.home {
+    align-self: center;
+    margin: 10px;
+}
+
+a {
+    color: rgb(247, 247, 247);
+    text-decoration: none;
+    background-color: #ac4e20a8;
+
+    font-size: 25px;
+}
+
+.daytasks {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h2 {
+    width: 40vh;
+    margin: 10px;
+    text-align: center;
+    color: #ffffff;
+    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgba(254, 76, 6, 0.61) 100%);
+    border: 3px dotted rgb(13, 56, 54);
+    border-radius: 40px;
+}
+
+h2:hover {
+    background-color: rgb(13, 56, 54);
+}
+
+.daytime {
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 auto;
+
+}
+
+.task {
+    width: 240px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 3px dotted #f06f10;
+    border-radius: 40px;
+}
+
+.task:hover {
+    background-color: antiquewhite;
+}
+
+@keyframes click-wave {
+    0% {
+        height: 4px;
+        width: 4px;
+        opacity: 0.35;
+        position: relative;
+    }
+    100% {
+        height: 20px;
+        width: 20px;
+        margin-left: -80px;
+        margin-top: -80px;
+        opacity: 0;
+    }
+}
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 7.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    margin: 5px;
+    transition: all 0.15s ease-out 0s;
+    background: rgb(0, 0, 0);
+    border-radius: 9px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+}
+
+.option-input:hover {
+    background: #f06f10;
+}
+
+.option-input:checked {
+    background-color: rgb(13, 56, 54);
+}
+
+.option-input:checked::before {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 29.66667px;
+    text-align: center;
+    line-height: 20px;
+    color: #f06f10;
+}
+
+.option-input:checked::after {
+    -webkit-animation: click-wave 2s;
+    -moz-animation: click-wave 2s;
+    animation: click-wave 2s;
+    background-color: #f06f10;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+.option-input.radio {
+    border-radius: 50%;
+}
+
+.option-input.radio::after {
+    border-radius: 50%;
+}
+
+
+
+

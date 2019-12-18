@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/shop.css" th:href="@{/css/shop.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <div class="shop_head">
+        <div class="points_balance">
+            <div class="bill">
+                <img src="img/bill.png" width="100px;" id="show">
+            </div>
+            <div class="points_all">
+                <td th:text="${balance}">000</td>
+            </div>
+            <img src="img/bill2.1.png" width="100px;" id="show">
+        </div>
+        <div class="home">
+            <p><label> </label><a href="../home.html" th:href="@{/}">На главную страницу</a>
+            </p>
+        </div>
+    </div>
+    <div class="shop_body">
+        <div class="shop_left">
+            <h2>Товары хижины </h2>
+            <div class="shop_card">
+
+                <body th:each="product : ${products}">
+                <form action="shop" method="post">
+                    <input type="hidden" name="id" th:value="${product.id}">
+                    <div class="card">
+                        <h3>
+                            <td th:text="${product.text}">000</td>
+                        </h3>
+                        <div class="price_field">
+                            <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
+                                    class="price">
+                                <td th:text="${product.price}">000</td>
+                            </button>
+                            <img src="img/Bill3.png" th:src="@{/img/Bill3.png}" width="20%">
+                        </div>
+                    </div>
+                </form>
+                </body>
+
+
+            </div>
+        </div>
+        <div class="shop_right">
+            <h2>История покупок</h2>
+            <div class="shop_history">
+
+                <body th:each="purch : ${purchases}">
+                <div class="history">
+                    <h3>
+                        <td th:text="${purch.text}">dgdddgdggddg</td>
+                    </h3>
+                    <span><td th:text="${purch.price}">000</td></span>
+                </div>
+
+                </body>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

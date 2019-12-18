@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container-fluid {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Kurale', serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgb(13, 56, 54);
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+}
+
+.promo_field {
+    color: black;
+    padding: 5px;
+    margin: 20px;
+
+}
+
+.daytasks_head, .dayend {
+    min-height: 6vh;
+    padding: 30px;
+    margin: 10px;
+    text-align: center;
+    background: url(../img/Gravity_Falls_logo.svg.png) repeat-x;
+    background-size: contain;
+}
+
+.colortext_1 {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.97);
+}
+
+.colortext_2 {
+    width: 9vh;
+    text-align: center;
+    background-color: rgba(0, 203, 55, 0.84);
+}
+
+.colortext_3 {
+    width: 9vh;
+    text-align: center;
+    background-color: rgba(250, 3, 3, 0.79);
+}
+
+.glyphicon-plus {
+    font-size: 15px;
+}
+
+.btn-submit {
+    background-color: rgba(0, 203, 55, 0.84);
+}
+
+.btn-delete {
+    background-color: rgba(250, 3, 3, 0.79);
+}
+
+.btn-add {
+    background-color: rgb(255, 255, 255);
+}
+
+.label-daytime {
+    background-color: rgba(240, 111, 16, 0.8);
+}
+
+.row-daytime {
+    flex-basis: 40vh;
+    margin: 20px;
+}
+
+.col-sm {
+    margin: 10px;
+}
+
+.daytasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.col_task {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.points {
+    display: flex;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.col_dayname {
+    text-align: center;
+}

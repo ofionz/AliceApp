@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgb(13, 56, 54);
+    background: url(../img/Hick.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    letter-spacing: 2px;
+}
+
+.shop_head {
+    min-height: 6vh;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+    background: url(../img/Gravity_Falls_logo.svg.png) repeat-x;
+    background-size: contain;
+}
+
+dialog {
+    background: rgba(255, 255, 255, 0.91);
+    text-align: center;
+    color: rgb(13, 56, 54);
+    width: 300px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-left: 530px;
+}
+
+#close {
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgba(249, 129, 77, 0.81);
+    font-size: 25px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .points_balance {
+        width: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+        justify-content: center;
+        background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
+        border: 4px solid #000;
+        border-radius: 40px;
+    }
+
+    .points_all {
+        margin-top: 20px;
+        text-align: center;
+        font-family: 'Poiret One', cursive;
+        font-size: 40px;
+        font-weight: 800;
+        color: rgba(255, 226, 0, 0.94);
+        text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
+        #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
+        rgb(13, 56, 54) 9px 5px 0;
+    }
+}
+
+.points_balance {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
+    border: 4px solid #000;
+    border-radius: 40px;
+}
+
+.points_all {
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 70px;
+    font-weight: 800;
+    color: rgba(255, 226, 0, 0.94);
+    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
+    #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
+    rgb(13, 56, 54) 9px 5px 0;
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.home {
+    align-self: center;
+}
+
+h2, .home {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    color: #ffffff;
+    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgba(254, 76, 6, 0.61) 100%);
+    border: 3px dotted rgb(13, 56, 54);
+    border-radius: 40px;
+}
+
+.shop_body {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.shop_left, .shop_right {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 85vh;
+    margin: 20px;
+    text-align: center;
+
+}
+
+.shop_card, .shop_history {
+    margin: 0px 20px;
+    padding: 20px;
+    color: rgb(255, 72, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: rgba(255, 255, 255, 0.93);
+}
+
+.shop_history {
+    flex-direction: column;
+    align-content: center;
+    color: rgb(13, 56, 54);
+    font-size: 12px;
+}
+
+h3 {
+    margin-right: 5px;
+}
+
+.price_field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 60%;
+}
+
+.price {
+    margin: 10px;
+    padding: 10px;
+    border: 2px black solid;
+    border-radius: 80px;
+    background-color: rgb(13, 56, 54);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: rgba(255, 226, 0, 0.94);
+    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
+    rgb(13, 56, 54) 1px 1px 0;
+
+}
+
+
+.card {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    border: 2px black solid;
+
+}
+
+.history {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
