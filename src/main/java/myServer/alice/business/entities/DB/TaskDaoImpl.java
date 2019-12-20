@@ -11,11 +11,18 @@ import java.util.Map;
 public class TaskDaoImpl implements TaskDAO {
 
 
+
+
     public Task findById(int id) {
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Task.class, id);
     }
 
-    @Override
+    /**
+     * Find ALL Tasks on  date what you want
+     * @param date LOcalDate
+     * @return List<Task></>
+     */
+        @Override
     public List<Task> findBy(LocalDate date) {
         Map<String, Object> parameterNameAndValues = new HashMap<>();
         parameterNameAndValues.put("date", date);
@@ -26,6 +33,12 @@ public class TaskDaoImpl implements TaskDAO {
         return tasks;
     }
 
+    /** This method just open connection with Data Base
+     * and send all parameters what you need *
+     * @param hql String of hql request
+     * @param parameterNameAndValues Map where String it is name of parameter, Object it s parameter (LocalDate, String)
+     * @return List of tasks with necessary parameters (date or time of day)
+     */
     private List<Task> sendRequest(String hql, Map<String, Object> parameterNameAndValues) {
         Query query = HibernateSessionFactoryUtil
                 .getSessionFactory()
@@ -36,6 +49,12 @@ public class TaskDaoImpl implements TaskDAO {
         return query.list();
     }
 
+    /** Find by tome of day and date
+     *
+     * @param time of day
+     * @param date
+     * @return list tasks
+     */
     public List<Task> findBy(String time, LocalDate date) {
 
         Map<String, Object> parameterNameAndValues = new HashMap<>();
@@ -47,6 +66,12 @@ public class TaskDaoImpl implements TaskDAO {
 
     }
 
+    /** Find all tasks between two dates it need when we want calculate all points between dates
+     *
+     * @param startDate
+     * @param endDate
+     * @return list tasks
+     */
     public List<Task> findBetweenDates(LocalDate startDate, LocalDate endDate) {
         Map<String, Object> parameterNameAndValues = new HashMap<>();
         parameterNameAndValues.put("startDate", startDate);
@@ -56,16 +81,7 @@ public class TaskDaoImpl implements TaskDAO {
     }
 
 
-    public List<Task> findAll() {
 
-        List<Task> tasks = (List<Task>) HibernateSessionFactoryUtil
-                .getSessionFactory()
-                .openSession()
-                .createQuery("from myServer.alice.business.entities.Task")
-                .list();
-
-        return tasks;
-    }
 
 
 }
