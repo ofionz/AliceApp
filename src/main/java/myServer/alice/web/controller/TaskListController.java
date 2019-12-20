@@ -72,7 +72,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         else if (parseRequestType(request).equals("promo")) {
             String code = request.getParameter("text");
             int amount = decodePromocode(code);
-            if (amount != 0 && bs.addBalanceByPromocode(amount)) {
+            if (amount != 0 && bs.addToBalanceByPromocode(amount)) {
                 String text = "Использован промокод  ";
                 purcServ.addPurchase(new Purchase(text, amount));
             }
