@@ -22,11 +22,10 @@ public class ProductsService {
     }
 
 
-    public void updateProductByOtherProduct(int id, Product product2) {
+    public void updateProduct(int id, Product product2) {
         Product product = findById(id);
         product.setText(product2.getText());
         product.setPrice(product2.getPrice());
-
         productsDAO.update(product);
 
     }

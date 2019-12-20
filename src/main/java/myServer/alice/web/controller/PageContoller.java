@@ -2,6 +2,8 @@ package myServer.alice.web.controller;
 
 import myServer.alice.business.entities.Product;
 import myServer.alice.business.entities.Task;
+import myServer.alice.business.services.TaskService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.ByteBuffer;
@@ -9,6 +11,14 @@ import java.nio.charset.Charset;
 import java.time.LocalDate;
 
 public class PageContoller {
+
+    private static final Logger log = Logger.getLogger(PageContoller.class);
+
+    /**
+     * get id from request, return -1 if something wrong
+     * @param request
+     * @return ID
+     */
 
     protected int parseRequestId(HttpServletRequest request) {
         int id = -1;
@@ -48,17 +58,24 @@ public class PageContoller {
                         return "updateproduct";
                     case "deleteproduct":
                         return "deleteproduct";
-                    default:
+                    default:{
+                        log.error("error of type parameters in request "+request);
                         return "error";
+                    }
+
                 }
 
             }
+            log.error("can not find \"type\" on this request "+request);
+            return "error";
         }
+        log.error("request is null");
         return "error";
     }
 
     protected Product createProductFromRequest(HttpServletRequest request) {
         Product result = null;
+
         int poi = 0;
         if (request != null) {
             String text = request.getParameter("text");

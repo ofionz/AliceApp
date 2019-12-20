@@ -53,11 +53,12 @@ public class SetiingsPageController extends PageContoller implements ImplALiceCo
                 else taskService.updateTaskByOtherTask(id, createTaskFromRequest(request));
             }
             break;
-            // in operation update product we can create new or edit old products
+            // in operation update product we if (id <0) create new or (if id>=0) edit old products
+
             case "updateproduct": {
                 int id = parseRequestId(request);
                 if (id < 0) ps.saveProduct(createProductFromRequest(request));
-                else ps.updateProductByOtherProduct(id, createProductFromRequest(request));
+                else ps.updateProduct(id, createProductFromRequest(request));
 
             }
             break;

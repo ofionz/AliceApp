@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-//very simple autenthification type
+//very simple authentication type
 
 public class LoginController extends PageContoller implements ImplALiceController {
     @Override

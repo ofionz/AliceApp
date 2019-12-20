@@ -41,7 +41,6 @@ public class HomeController implements ImplALiceController {
             throws Exception {
 
         WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        ctx.setVariable("today", Calendar.getInstance());
 
         templateEngine.process("home", ctx, response.getWriter());
 
