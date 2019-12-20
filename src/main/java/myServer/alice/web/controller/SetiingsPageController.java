@@ -2,7 +2,6 @@ package myServer.alice.web.controller;
 
 import myServer.alice.business.entities.Task;
 import myServer.alice.business.services.BalanceService;
-import myServer.alice.business.services.BookService;
 import myServer.alice.business.services.ProductsService;
 import myServer.alice.business.services.TaskService;
 import org.thymeleaf.ITemplateEngine;
@@ -35,8 +34,6 @@ public class SetiingsPageController extends PageContoller implements ImplALiceCo
         final TaskService taskService = new TaskService();
         final BalanceService bs = new BalanceService(taskService);
         final ProductsService ps = new ProductsService();
-        final BookService bookService = new BookService();
-
         String textPromocode = "Промокод активен один день!";
         boolean statusOfExistencePromocode = false;
 
@@ -62,18 +59,7 @@ public class SetiingsPageController extends PageContoller implements ImplALiceCo
                 int id = parseRequestId(request);
                 if (id < 0) ps.saveProduct(createProductFromRequest(request));
                 else ps.updateProduct(id, createProductFromRequest(request));
-            }
-            break;
 
-            case "updatebook": {
-                int id = parseRequestId(request);
-                if (id < 0) bookService.saveBook(createBookFromRequest(request));
-                else bookService.updateBook(id, createBookFromRequest(request));
-            }
-            break;
-
-            case "deletebook": {
-                bookService.deleteBook(bookService.findById(parseRequestId(request)));
             }
             break;
 
@@ -110,7 +96,6 @@ public class SetiingsPageController extends PageContoller implements ImplALiceCo
         ctx.setVariable("eveningTasks", tasks.get("evening"));
         ctx.setVariable("balance", bs.getBalance());
         ctx.setVariable("products", ps.getAll());
-        ctx.setVariable("allBooks", bookService.getAll());
         ctx.setVariable("promo", textPromocode);
 
         templateEngine.process("settings", ctx, response.getWriter());

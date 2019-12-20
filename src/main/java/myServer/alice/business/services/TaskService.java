@@ -19,21 +19,24 @@
  */
 package myServer.alice.business.services;
 
+import myServer.alice.business.entities.DB.HibernateSessionFactoryUtil;
 import myServer.alice.business.entities.DB.TaskDAO;
 import myServer.alice.business.entities.DB.TaskDaoImpl;
 import myServer.alice.business.entities.Task;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.*;
 
 
 public class TaskService {
+    private static final Logger log = Logger.getLogger(TaskService.class);
 
     private TaskDAO taskDao = new TaskDaoImpl();
 
 
     public TaskService() {
-        setDayTasks(this);
+        setDayTasks();
     }
 
 
@@ -42,6 +45,10 @@ public class TaskService {
     }
 
 
+    /**
+     * delete task by ID
+     * @param id
+     */
     public void deleteFromCurrentTasks(Integer id) {
         Task task = findTask(id);
         if (task != null && task.getDate().isEqual(LocalDate.now())) {
@@ -96,38 +103,46 @@ public class TaskService {
         return taskDao.findBetweenDates(date1, date2);
     }
 
-
-
-
-    private void setDayTasks(TaskService taskService) {
+    /** normalizes and updates data
+     * in the database in order to display current tasks
+     */
+    private void setDayTasks() {
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.from(today);
-        List<Task> tasks = taskService.findBy(date);
+        List<Task> tasks = this.findBy(date);
 
-        //???? ??????????? ??????? ??? - ?????
+        //if today tasks !=0 - break this method, else --
         if (tasks.size() == 0) {
-            // ??????? ????????? ??????????? ? ???? ??????? ( ????? ????? ? ????? ????????? ???? ?????)
+            //we get date when tasks was available
             while (tasks.size() == 0) {
                 date = date.minusDays(1);
-                tasks = taskService.findBy(date);
+                tasks = this.findBy(date);
             }
-            //????????? ??????? ?? ??? ??? ??????? ???? ????????? ??????? ?? ?????? ? ?????
+            //and copy all tasks to next day, until we get to today
             while (date.isBefore(today)) {
                 date = date.plusDays(1);
                 for (Task task : tasks) {
                     task.removeId();
                     task.setStatus(false);
                     task.setDate(date);
-                    taskService.saveTask(task);
+                    this.saveTask(task);
                 }
             }
         }
 
     }
 
+    /**
+     *  Split  all tasks by time of day (morning,afternoon,evening) and sort (by id)
+     *
+     * @param list
+     * @return map of tasks
+     */
+
     private Map<String, List<Task>> splitByTimeOfDay(List<Task> list) {
-        if (list.size() == 0) {
-            list.add(new Task("?????? ????????? ??????", LocalDate.now(), false, "morning", 0, 0));
+        if (list==null||list.size() == 0) {
+            log.warn("empty base! ");
+            list.add(new Task("empty base", LocalDate.now(), false, "morning", 0, 0));
         } else {
             Comparator<Task> comparator = Comparator.comparing(obj -> obj.getId());
             list.sort(comparator);

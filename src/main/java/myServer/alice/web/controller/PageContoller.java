@@ -1,6 +1,5 @@
 package myServer.alice.web.controller;
 
-import myServer.alice.business.entities.Book;
 import myServer.alice.business.entities.Product;
 import myServer.alice.business.entities.Task;
 import myServer.alice.business.services.TaskService;
@@ -59,12 +58,6 @@ public class PageContoller {
                         return "updateproduct";
                     case "deleteproduct":
                         return "deleteproduct";
-                    case "book":
-                        return "book";
-                    case "deletebook":
-                        return "deletebook";
-                    case "updatebook":
-                        return "updatebook";
                     default:{
                         log.error("error of type parameters in request "+request);
                         return "error";
@@ -73,8 +66,8 @@ public class PageContoller {
                 }
 
             }
-
-            return "";
+            log.error("can not find \"type\" on this request "+request);
+            return "error";
         }
         log.error("request is null");
         return "error";
@@ -108,31 +101,6 @@ public class PageContoller {
         }
         return result;
     }
-
-    protected Book createBookFromRequest(HttpServletRequest request) {
-        Book result = null;
-
-        if (request != null) {
-            String name = request.getParameter("name");
-            String url = request.getParameter("url");
-            if (name != null && url != null) {
-                ByteBuffer buf = Charset.forName("ISO-8859-1").encode(name);
-                byte[] b = buf.array();
-                name = new String(b);
-
-                result = new Book(name, url);
-
-            } else result = new Book("odin iz parametrov = null", "");
-
-        }
-
-        return result;
-    }
-
-
-
-
-
 
     protected Task createTaskFromRequest(HttpServletRequest request) {
         Task result = null;

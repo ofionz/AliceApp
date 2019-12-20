@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 public class BalanceDAOImpl implements BalanceDAO {
-    private static final Logger log = Logger.getLogger(HibernateSessionFactoryUtil.class);
+    private static final Logger log = Logger.getLogger(BalanceDAOImpl.class);
 
 
 /*This method selects only one balance from several,
