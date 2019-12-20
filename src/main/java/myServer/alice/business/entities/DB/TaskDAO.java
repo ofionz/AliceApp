@@ -14,6 +14,5 @@ public interface TaskDAO extends DAO {
 
     public List<Task> findBetweenDates(LocalDate date, LocalDate date2);
 
-    public List<Task> findAll();
 
 }

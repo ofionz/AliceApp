@@ -85,6 +85,7 @@ public class TaskService {
 
     public List<Task> findBy(LocalDate date) {
         return taskDao.findBy(date);
+
     }
 
     public List<Task> findBy(String time, LocalDate date) {
@@ -96,9 +97,6 @@ public class TaskService {
     }
 
 
-    public List<Task> findAll() {
-        return taskDao.findAll();
-    }
 
 
     private void setDayTasks(TaskService taskService) {

@@ -5,6 +5,7 @@ import org.hibernate.Transaction;
 
 public interface DAO {
 
+
     default void save(Object obj) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
