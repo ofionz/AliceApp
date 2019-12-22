@@ -159,7 +159,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
     private int getFinePointsAmount(List<Task> list) {
         int amount = 0;
         for (Task tsk : list) {
-            if (!tsk.isStatus()) amount += tsk.getPoints();
+            if (!tsk.isStatus()) amount += tsk.getFinepoints();
         }
         return amount;
     }

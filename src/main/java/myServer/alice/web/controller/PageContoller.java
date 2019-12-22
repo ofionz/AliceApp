@@ -66,8 +66,8 @@ public class PageContoller {
                 }
 
             }
-            log.error("can not find \"type\" on this request "+request);
-            return "error";
+
+            return "";
         }
         log.error("request is null");
         return "error";
