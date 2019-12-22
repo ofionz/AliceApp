@@ -72,7 +72,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         else if (parseRequestType(request).equals("promo")) {
             String code = request.getParameter("text");
             int amount = decodePromocode(code);
-            if (amount != 0 && bs.addBalanceByPromocode(amount)) {
+            if (amount != 0 && bs.addToBalanceByPromocode(amount)) {
                 String text = "Использован промокод  ";
                 purcServ.addPurchase(new Purchase(text, amount));
             }
@@ -159,7 +159,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
     private int getFinePointsAmount(List<Task> list) {
         int amount = 0;
         for (Task tsk : list) {
-            if (!tsk.isStatus()) amount += tsk.getPoints();
+            if (!tsk.isStatus()) amount += tsk.getFinepoints();
         }
         return amount;
     }

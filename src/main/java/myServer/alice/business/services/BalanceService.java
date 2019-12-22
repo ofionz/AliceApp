@@ -21,11 +21,15 @@ public class BalanceService {
         calculate(this, new TaskService());
     }
 
-
-    public boolean addBalanceByPromocode(Integer balance) {
+    /**Method for adding or subtracting
+     * points to the balance by promocode.
+     * @param points
+     * @return boolean  -if the promotional code was used today return false
+     */
+    public boolean addToBalanceByPromocode(Integer points) {
         Balance old = balanceDAO.getBalance();
         if (!old.isPromocode()) {
-            Balance newBal = old.setAmount(balanceDAO.getBalance().getAmount() + balance);
+            Balance newBal = old.setAmount(balanceDAO.getBalance().getAmount() + points);
             newBal.setPromocode(true);
             balanceDAO.update(newBal);
             return true;
@@ -36,6 +40,7 @@ public class BalanceService {
     public void updateBalance(Balance balance) {
         balanceDAO.update(balance);
     }
+
 
     public Balance getBalance() {
         return balanceDAO.getBalance();
