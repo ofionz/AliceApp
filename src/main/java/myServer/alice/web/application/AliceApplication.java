@@ -66,6 +66,7 @@ public class AliceApplication {
         this.controllersByURL.put("/list", new TaskListController());
         this.controllersByURL.put("/shop", new ShopPageController());
         this.controllersByURL.put("/settings", new SetiingsPageController());
+        this.controllersByURL.put("/books", new BooksController());
         this.controllersByURL.put("/login", new LoginController());
     }
 
