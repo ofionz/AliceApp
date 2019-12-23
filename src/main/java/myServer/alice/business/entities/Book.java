@@ -13,6 +13,13 @@ public class Book {
         private String name = null;
         @Column(name = "url")
         private String url = null;
+       public Book (){
+
+        }
+        public Book (String name, String url){
+           this.name=name;
+           this.url=url;
+        }
 
     public Integer getId() {
         return id;
