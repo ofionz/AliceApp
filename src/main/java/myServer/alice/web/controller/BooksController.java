@@ -1,5 +1,6 @@
 package myServer.alice.web.controller;
 
+import myServer.alice.business.services.BookService;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -23,14 +24,17 @@ public class BooksController extends PageContoller implements ImplALiceControlle
             throws Exception {
 
 
+        BookService bookService = new BookService();
 
         String urlBook ="";
+
         if (parseRequestType(request)=="book"){
-           String bookName = request.getParameter("name");
-           if (bookName!=null){
-               if(bookName.equals("english"))urlBook="https://drive.google.com/file/d/1kEQ1LfYT1yEMkD2IUXgbe-2hrifEKpe_/preview";
-               else if (bookName.equals("math")) urlBook ="https://drive.google.com/file/d/1tW3--EnkQfMJqBBKqttVLLi4RpuT5Mpe/preview";
-           }
+           int id= parseRequestId(request);
+           if (id>=0){
+
+            }
+
+
         }
 
 
