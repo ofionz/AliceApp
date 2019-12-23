@@ -12,15 +12,14 @@
 
 <form action="books"  method="post">
     <input hidden name="type" value="book">
-    <p><select size="5" multiple name="name"  onclick=form.submit()>
-        <option value="english">Английский</option>
-        <option value="math">Математика</option>
-        <option value="1111">1111</option>
-        <option value="2222">2222</option>
+    <p><select size="5" multiple name="id"  onclick=form.submit()>
+        <body th:each="book : ${allBooks}">
+        <option th:value="${book.id}" value="-1"><td th:text="${book.name}">Book</option>
+        </body>
     </select></p>
 </form>
 
-<iframe th:src="${book}" src="" width="100%" height="520"></iframe>
+<iframe th:src="${urlBook}" src="-" width="100%" height="520"></iframe>
 
 
 </body>

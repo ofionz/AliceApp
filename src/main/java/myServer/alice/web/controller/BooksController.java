@@ -31,16 +31,12 @@ public class BooksController extends PageContoller implements ImplALiceControlle
         if (parseRequestType(request)=="book"){
            int id= parseRequestId(request);
            if (id>=0){
-
+            urlBook=bookService.findById(id).getUrl();
             }
-
-
         }
-
-
-
         WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        ctx.setVariable("book",urlBook);
+        ctx.setVariable("allBooks",bookService.getAll());
+        ctx.setVariable("urlBook",urlBook);
         templateEngine.process("books", ctx, response.getWriter());
 
 
