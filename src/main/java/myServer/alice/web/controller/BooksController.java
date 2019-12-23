@@ -1,6 +1,5 @@
 package myServer.alice.web.controller;
 
-import myServer.alice.business.services.BookService;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -23,10 +22,8 @@ public class BooksController extends PageContoller implements ImplALiceControlle
             final ServletContext servletContext, final ITemplateEngine templateEngine)
             throws Exception {
 
-        BookService bookService = new BookService();
-
         WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        ctx.setVariable("allBooks",bookService.getAll());
+
         templateEngine.process("books", ctx, response.getWriter());
 
 

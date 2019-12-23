@@ -58,6 +58,8 @@ public class PageContoller {
                         return "updateproduct";
                     case "deleteproduct":
                         return "deleteproduct";
+                    case "book":
+                        return "book";
                     default:{
                         log.error("error of type parameters in request "+request);
                         return "error";
