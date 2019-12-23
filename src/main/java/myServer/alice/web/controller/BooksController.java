@@ -22,8 +22,21 @@ public class BooksController extends PageContoller implements ImplALiceControlle
             final ServletContext servletContext, final ITemplateEngine templateEngine)
             throws Exception {
 
-        WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
 
+
+        String urlBook ="";
+        if (parseRequestType(request)=="book"){
+           String bookName = request.getParameter("name");
+           if (bookName!=null){
+               if(bookName.equals("english"))urlBook="https://drive.google.com/file/d/1kEQ1LfYT1yEMkD2IUXgbe-2hrifEKpe_/preview";
+               else if (bookName.equals("math")) urlBook ="https://drive.google.com/file/d/1tW3--EnkQfMJqBBKqttVLLi4RpuT5Mpe/preview";
+           }
+        }
+
+
+
+        WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
+        ctx.setVariable("book",urlBook);
         templateEngine.process("books", ctx, response.getWriter());
 
 
