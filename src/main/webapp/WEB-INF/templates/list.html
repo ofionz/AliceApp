@@ -8,10 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poiret+One|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
     <title></title>
 </head>
-
 <body>
-
-
 <div class="container">
     <!-- основной контейнер-->
     <div class="daytasks_head">
@@ -44,8 +41,6 @@
         <div class="home">
             <p><label> </label><a href="../home.html" th:href="@{/}">На главную страницу</a>
             </p>
-
-
             <div id="countdown" class="countdown">
                 <div class="countdown-number">
                     <span class="hours countdown-time"></span>
@@ -60,51 +55,49 @@
                     <span class="countdown-text">Секунд</span>
                 </div>
             </div>
-
-
         </div>
     </div>
 
     <div class="daytasks">
 
         <div class="daytime">
-
+            <p><a name="morning"></a></p>
             <h2>
-                <td th:text="${morningAmountPoints+'   Утро   '+morningAmountFinePoints}">Утро</td>
+                <td th:text="${morningAmountPoints+'  за утро'}">Утро</td>
             </h2>
 
             <div class="task">
+
                 <body th:each="task : ${morningTasks}">
                 <td>
                     <form class="form_td">
                         <label>
                 <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)"
+                <input type="checkbox" id="null" th:id="${task.id}" th:name="${task.timeOfDay}" onchange="fun1(this)"
                        th:checked="${task.status}"
                        class="option-input checkbox">
                 </label>
                 </form>
                 </td>
-
-
                 </body>
             </div>
-
             <img src="img/56f54f8f8358c153ae3ec8b2.png" alt="mayble" style="vertical-align: middle" width="170px"
                  th:src="@{/img/56f54f8f8358c153ae3ec8b2.png}">
 
         </div>
 
         <div class="daytime">
+            <p><a name="afternoon"></a></p>
             <h2>
-                <td th:text="${afternoonAmountPoints+'   День   '+afternoonAmountFinePoints}">День</td>
+                <td th:text="${afternoonAmountPoints+'  за день'}">День</td>
             </h2>
             <div class="task">
+
                 <body th:each="task : ${afternoonTasks}">
                 <td>
                     <form class="form_td"><label>
                 <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                <input type="checkbox" id="null" th:id="${task.id}" th:name="${task.timeOfDay}" onchange="fun1(this)" th:checked="${task.status}"
                        class="option-input checkbox"></label></form></td>
                 </body>
             </div>
@@ -112,15 +105,17 @@
                  width="220px" th:src="@{/img/4decaaa734e702f445c3ac425893bf87.png}">
         </div>
         <div class="daytime">
+            <p><a name="dolg"></a></p>
             <h2>
-                <td th:text="${dolgAmountPoints+'   Долг   '+dolgAmountFinePoints}">Долг</td>
+                <td th:text="${dolgAmountPoints+' за долг'}">Долг</td>
             </h2>
             <div class="task">
+
                 <body th:each="task : ${dolgTasks}">
                 <td>
                     <form class="form_td"><label>
                 <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                <input type="checkbox" id="null" th:name="${task.timeOfDay}" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
                        class="option-input checkbox"></label></form></td>
                 </body>
             </div>
@@ -128,21 +123,22 @@
                  th:src="@{/img/vendy.png}">
         </div>
         <div class="daytime">
+            <p><a name="evening"></a></p>
             <h2>
-                <td th:text="${eveningAmountPoints+'   Вечер   '+eveningAmountFinePoints}">Вечер</td>
+                <td th:text="${eveningAmountPoints+' за вечер'}">Вечер</td>
             </h2>
             <div class="task">
+
                 <body th:each="task : ${eveningTasks}">
                 <td>
                     <form class="form_td"><label>
                 <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                <input type="checkbox" id="null" th:id="${task.id}" th:name="${task.timeOfDay}" onchange="fun1(this)" th:checked="${task.status}"
                        class="option-input checkbox"></label></form></td>
                 </body>
             </div>
             <img src="img/32.png" alt="mayble" style="vertical-align: middle" width="160px" th:src="@{/img/32.png}">
         </div>
-
     </div>
 </div>
 
@@ -172,7 +168,6 @@
 
     function initializeClock(id, endtime) {
         var clock = document.getElementById(id);
-
         var hoursSpan = clock.querySelector('.hours');
         var minutesSpan = clock.querySelector('.minutes');
         var secondsSpan = clock.querySelector('.seconds');
@@ -186,7 +181,6 @@
                 clearInterval(timeinterval);
             }
         }
-
         updateClock();
         var timeinterval = setInterval(updateClock, 1000);
     }
@@ -204,15 +198,11 @@
         var form = document.createElement('form');
         form.action = '/alice/list';
         form.method = 'POST';
-        var value = 'status><br><input name="id" value=' + chbox.id + '>';
-
+        var value = 'status><br><input name="id" value=' + chbox.id + '>'+'<br><input name="dayTime" value=' + chbox.name + '>';
         var name = '<input name="type" value=' + value;
         form.innerHTML = name;
-
         document.body.append(form);
         form.submit();
-
-
     }
 
 

@@ -79,7 +79,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         }
 
         //it is pattern Post-redirect-get
-        if (!request.getMethod().equalsIgnoreCase("get")) response.sendRedirect("list");
+        if (!request.getMethod().equalsIgnoreCase("get")) response.sendRedirect("list#"+request.getParameter("dayTime"));
 
         Map<String, List<Task>> tasks = taskService.getAllCurrentTasks();
 
@@ -89,14 +89,11 @@ public class TaskListController extends PageContoller implements ImplALiceContro
             ctx.setVariable(key + "Tasks", tasks.get(key));
             int points = getPointsAmount(tasks.get(key));
             currentBalance += points;
-            if (points == 0) ctx.setVariable(key + "AmountPoints", "");
-            else ctx.setVariable(key + "AmountPoints", "+" + points);
-
-
-            int finePoints = getFinePointsAmount(tasks.get(key));
-            currentBalance -= finePoints;
-            if (finePoints == 0) ctx.setVariable(key + "AmountFinePoints", "");
-            else ctx.setVariable(key + "AmountFinePoints", "-" + finePoints);
+            if (points>0){
+                ctx.setVariable(key + "AmountPoints", "+" + points+" "+getNumEnding(points));
+            }
+            else
+            ctx.setVariable(key + "AmountPoints",  points+" "+getNumEnding(points));
 
         }
         ctx.setVariable("balance", currentBalance);
@@ -145,23 +142,33 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         int amount = 0;
         for (Task tsk : list) {
             if (tsk.isStatus()) amount += tsk.getPoints();
+            else amount-=tsk.getFinepoints();
         }
         return amount;
     }
 
-    /**
-     * getFinePointsAmount is method  where we calculate amount of
-     * Fine points in all today tasks
-     *
-     * @param list - input list
-     * @return int output points(default =0)
-     */
-    private int getFinePointsAmount(List<Task> list) {
-        int amount = 0;
-        for (Task tsk : list) {
-            if (!tsk.isStatus()) amount += tsk.getFinepoints();
+
+
+    private  String getNumEnding(int num)
+    {
+        String end="";
+                int i=0;
+        num = num % 100;
+        if (num>=11 && num<=19) {
+            end="очков";
         }
-        return amount;
+        else {
+            i = num % 10;
+            switch (i)
+            {
+                case (1): end = "очко"; break;
+                case (2):
+                case (3):
+                case (4): end = "очка"; break;
+                default: end = "очков";
+            }
+        }
+        return end;
     }
 
 
