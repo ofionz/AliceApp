@@ -147,10 +147,12 @@ h2, .home {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.93);
 }
-
+.shop_card{
+    font-size:15px ;
+}
 .shop_history {
     flex-direction: column;
     align-content: center;
@@ -164,33 +166,32 @@ h3 {
 
 .price_field {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    flex-basis: 60%;
+
 }
 
 .price {
-    margin: 10px;
-    padding: 10px;
+    margin-right: 5px;
+    padding: 2px;
     border: 2px black solid;
-    border-radius: 80px;
+    border-radius: 5px;
     background-color: rgb(13, 56, 54);
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 5px;
     color: rgba(255, 226, 0, 0.94);
-    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
-    rgb(13, 56, 54) 1px 1px 0;
-
 }
 
 
 .card {
     margin: 5px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: baseline;
     border: 2px black solid;
+    flex: 1 1 auto;
 
 }
 
