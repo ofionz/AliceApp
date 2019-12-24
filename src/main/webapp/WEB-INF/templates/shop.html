@@ -40,12 +40,37 @@
                         <div class="price_field">
                             <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
                                     class="price">
+                                <td th:text="${product.price}">340</td>
+                            </button>
+                            <img src="img/Bill3.png" th:src="@{/img/Bill3.png}" width="20%">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>
+                            <td th:text="${product.text}">поездака в аквапарк</td>
+                        </h3>
+                        <div class="price_field">
+                            <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
+                                    class="price">
+                                <td th:text="${product.price}">000</td>
+                            </button>
+                            <img src="img/Bill3.png" th:src="@{/img/Bill3.png}" width="20%">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>
+                            <td th:text="${product.text}">игрушка за 200 рублей</td>
+                        </h3>
+                        <div class="price_field">
+                            <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
+                                    class="price">
                                 <td th:text="${product.price}">000</td>
                             </button>
                             <img src="img/Bill3.png" th:src="@{/img/Bill3.png}" width="20%">
                         </div>
                     </div>
                 </form>
+
                 </body>
 
 

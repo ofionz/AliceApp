@@ -12,7 +12,6 @@
 
 
 <div class="container">
-
     <!-- основной контейнер-->
     <div class="daytasks_head">
         <div class="points_balance">
@@ -73,65 +72,92 @@
             <div class="task">
                 <body th:each="task : ${morningTasks}">
                 <td>
-                    <form><label>
+                    <div class="task_td">
+                        <form class="form_td"><label>
                 <td th:text="${task.text}">Вымыть посуду</td>
                 <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
-                       class="option-input checkbox"></label></form></p></td>
-                </body>
+                       class="option-input checkbox"></label></form></p>
             </div>
+            </td>
+            <td>
+                <div class="task_td">
+                    <form class="form_td"><label>
+            <td th:text="${task.text}">Позвонить когда придешь d irjke</td>
+            <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                   class="option-input checkbox"></label></form></p></div>
+        </td>
+        <td>
+            <div class="task_td">
+                <form class="form_td"><label>
+        <td th:text="${task.text}">Переодеться в домашнее, грязное в стирку</td>
+        <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+               class="option-input checkbox"></label></form></p></div>
+    </td>
 
-            <img src="img/56f54f8f8358c153ae3ec8b2.png" alt="mayble" style="vertical-align: middle" width="170px"
-                 th:src="@{/img/56f54f8f8358c153ae3ec8b2.png}">
-        </div>
-        <div class="daytime">
-            <h2>
-                <td th:text="${afternoonAmountPoints+'   День   '+afternoonAmountFinePoints}">День</td>
-            </h2>
-            <div class="task">
-                <body th:each="task : ${afternoonTasks}">
-                <td>
-                    <form><label>
-                <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
-                       class="option-input checkbox"></label></form></p></td>
-                </body>
-            </div>
-            <img src="img/4decaaa734e702f445c3ac425893bf87.png" alt="mayble" style="vertical-align: middle"
-                 width="220px" th:src="@{/img/4decaaa734e702f445c3ac425893bf87.png}">
-        </div>
-        <div class="daytime">
-            <h2>
-                <td th:text="${dolgAmountPoints+'   Долг   '+dolgAmountFinePoints}">Долг</td>
-            </h2>
-            <div class="task">
-                <body th:each="task : ${dolgTasks}">
-                <td>
-                    <form><label>
-                <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
-                       class="option-input checkbox"></label></form></p></td>
-                </body>
-            </div>
-            <img src="img/vendy.png" alt="mayble" style="vertical-align: middle" width="130px"
-                 th:src="@{/img/vendy.png}">
-        </div>
-        <div class="daytime">
-            <h2>
-                <td th:text="${eveningAmountPoints+'   Вечер   '+eveningAmountFinePoints}">Вечер</td>
-            </h2>
-            <div class="task">
-                <body th:each="task : ${eveningTasks}">
-                <td>
-                    <form><label>
-                <td th:text="${task.text}">Вымыть посуду</td>
-                <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
-                       class="option-input checkbox"></label></form></p></td>
-                </body>
-            </div>
-            <img src="img/32.png" alt="mayble" style="vertical-align: middle" width="160px" th:src="@{/img/32.png}">
-        </div>
+</body>
+</div>
 
+<img src="img/56f54f8f8358c153ae3ec8b2.png" alt="mayble" style="vertical-align: middle" width="170px"
+     th:src="@{/img/56f54f8f8358c153ae3ec8b2.png}">
+</div>
+<div class="daytime">
+    <h2>
+        <td th:text="${afternoonAmountPoints+'   День   '+afternoonAmountFinePoints}">День</td>
+    </h2>
+    <div class="task">
+        <body th:each="task : ${afternoonTasks}">
+        <td>
+            <div class="task_td">
+                <form class="form_td"><label>
+        <td th:text="${task.text}">Вымыть посуду</td>
+        <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+               class="option-input checkbox"></label></form></p>
     </div>
+    </td>
+    </body>
+</div>
+<img src="img/4decaaa734e702f445c3ac425893bf87.png" alt="mayble" style="vertical-align: middle"
+     width="220px" th:src="@{/img/4decaaa734e702f445c3ac425893bf87.png}">
+</div>
+<div class="daytime">
+    <h2>
+        <td th:text="${dolgAmountPoints+'   Долг   '+dolgAmountFinePoints}">Долг</td>
+    </h2>
+    <div class="task">
+        <body th:each="task : ${dolgTasks}">
+        <td>
+            <div class="task_td">
+                <form class="form_td"><label>
+        <td th:text="${task.text}">Вымыть посуду</td>
+        <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+               class="option-input checkbox"></label></form></p>
+    </div>
+    </td>
+    </body>
+</div>
+<img src="img/vendy.png" alt="mayble" style="vertical-align: middle" width="130px"
+     th:src="@{/img/vendy.png}">
+</div>
+<div class="daytime">
+    <h2>
+        <td th:text="${eveningAmountPoints+'   Вечер   '+eveningAmountFinePoints}">Вечер</td>
+    </h2>
+    <div class="task">
+        <body th:each="task : ${eveningTasks}">
+        <td>
+            <div class="task_td">
+                <form class="form_td"><label>
+        <td th:text="${task.text}">Вымыть посуду</td>
+        <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+               class="option-input checkbox"></label></form></p>
+    </div>
+    </td>
+    </body>
+</div>
+<img src="img/32.png" alt="mayble" style="vertical-align: middle" width="160px" th:src="@{/img/32.png}">
+</div>
+
+</div>
 </div>
 </body>
 
@@ -141,16 +167,15 @@
 <script>
 
 
-
     function getTimeRemaining(endtime) {
         var t = Date.parse(endtime) - Date.parse(new Date());
         var seconds = Math.floor((t / 1000) % 60);
         var minutes = Math.floor((t / 1000 / 60) % 60);
         var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-        if (hours<0||minutes<0||seconds<0){
-            hours=0;
-            minutes=0;
-            seconds=0;
+        if (hours < 0 || minutes < 0 || seconds < 0) {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
         }
         return {
             'total': t,
@@ -176,10 +201,12 @@
                 clearInterval(timeinterval);
             }
         }
+
         updateClock();
         var timeinterval = setInterval(updateClock, 1000);
     }
-    var deadtime = new Date ();
+
+    var deadtime = new Date();
     deadtime.setHours(20);
     deadtime.setMinutes(00);
     deadtime.setSeconds(00);
@@ -192,10 +219,10 @@
         var form = document.createElement('form');
         form.action = '/alice/list';
         form.method = 'POST';
-        var value='status><br><input name="id" value='+chbox.id+'>';
+        var value = 'status><br><input name="id" value=' + chbox.id + '>';
 
-        var name =  '<input name="type" value='+value;
-        form.innerHTML =name;
+        var name = '<input name="type" value=' + value;
+        form.innerHTML = name;
 
         document.body.append(form);
         form.submit();
@@ -204,10 +231,10 @@
     }
 
 
+    <
+    /script>
 
-    </script>
-
-    <script>
+    < script >
 
     var dialog = document.querySelector('dialog');
     document.querySelector('#show').onclick = function () {
