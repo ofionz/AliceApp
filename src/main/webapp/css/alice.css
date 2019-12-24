@@ -124,6 +124,29 @@ a {
     flex-wrap: wrap;
 
 
+
+    justify-content: space-between;
+}
+.task_td{
+    width: 230px;
+
+    margin-top: 10px;
+    line-height:13px;
+    font-size: 18px;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+}
+.form_td{
+    height: 45px;
+    padding: 5px;
+
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+
 }
 h2 {
     width: 40vh;
@@ -155,6 +178,7 @@ h2:hover {
     background-color: rgba(255, 255, 255, 0.75);
     border: 3px dotted #f06f10;
     border-radius: 40px;
+    flex: 1 1 auto;
 }
 
 .task:hover {
