@@ -23,20 +23,10 @@ public class BooksController extends PageContoller implements ImplALiceControlle
             final ServletContext servletContext, final ITemplateEngine templateEngine)
             throws Exception {
 
-
         BookService bookService = new BookService();
 
-        String urlBook ="";
-
-        if (parseRequestType(request)=="book"){
-           int id= parseRequestId(request);
-           if (id>=0){
-            urlBook=bookService.findById(id).getUrl();
-            }
-        }
         WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
         ctx.setVariable("allBooks",bookService.getAll());
-        ctx.setVariable("urlBook",urlBook);
         templateEngine.process("books", ctx, response.getWriter());
 
 
