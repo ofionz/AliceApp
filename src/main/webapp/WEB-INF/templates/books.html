@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/books.css" th:href="@{/css/books.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <script type='text/javascript' src='../../js/select.js' th:src="@{/js/select.js}"></script>
+    <title></title>
+</head>
+<body>
+
+<section class="demo">
+    <div class="container">
+        <div class="row">
+            <div class="twelvecol">
+                <div class="content">
+
+                        <select class="turnintodropdown" name="id" onchange=form.submit()>
+                            <option value="-1">Выбери книгу</option>
+                            <option th:each="book : ${allBooks}"  th:value="${book.url}" value="-1">
+                                <td th:text="${book.name}">Book
+                            </option>
+                        </select>
+
+                </div>
+                <!-- .content -->
+            </div>
+            <!-- .twelvecol -->
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</section>
+
+<iframe src="" id ="frame" width="100%" height="520"></iframe>
+
+
+</body>
+</html>
