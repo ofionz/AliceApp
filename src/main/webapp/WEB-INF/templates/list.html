@@ -1,5 +1,34 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../../css/alice.css" th:href="@{/css/alice.css}"/>
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+        <title></title>
+    </head>
+
+    <body>
+
+
+    <div class="container">
+        <!-- основной контейнер-->
+        <div class="daytasks_head">
+            <div class="points_balance">
+                <div class="bill">
+                    <dialog>
+                        <form role="form" action="list" method="post">
+                            <p>ВВЕДИ СЕКРЕТНЫЙ КОД</p>
+                            <input name="text" id="promocode" type="text" value>
+                            <button type="submit" id="close" name="type" value="promo"
+                                    onclick="document.pressed=this.value()">Отправить
+                            </button>
+                        </form>
+                    </dialog>
+                    <img src="img/bill.png" width="100px;" id="show">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,19 +78,75 @@
                 <div class="countdown-number">
                     <span class="hours countdown-time"></span>
                     <span class="countdown-text">Часов</span>
+
                 </div>
-                <div class="countdown-number">
-                    <span class="minutes countdown-time"></span>
-                    <span class="countdown-text">Минут</span>
+                <div class="points_all">
+                    <td th:text="${balance}">000</td>
                 </div>
-                <div class="countdown-number">
-                    <span class="seconds countdown-time"></span>
-                    <span class="countdown-text">Секунд</span>
+                <div class="bill">
+                    <dialog>
+                        <form>
+                            <p>Это окно для отправки промокода на сервер</p>
+                            <button id="close">Отправить</button>
+                        </form>
+                    </dialog>
+                    <img src="img/bill2.1.png" width="100px;" id="show">
                 </div>
             </div>
+            <div class="home">
+                <p><label> </label><a href="../home.html" th:href="@{/}">На главную страницу</a>
+                </p>
 
 
+                <div id="countdown" class="countdown">
+                    <div class="countdown-number">
+                        <span class="hours countdown-time"></span>
+                        <span class="countdown-text">Часов</span>
+                    </div>
+                    <div class="countdown-number">
+                        <span class="minutes countdown-time"></span>
+                        <span class="countdown-text">Минут</span>
+                    </div>
+                    <div class="countdown-number">
+                        <span class="seconds countdown-time"></span>
+                        <span class="countdown-text">Секунд</span>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
+
+
+        <div class="daytasks">
+
+            <div class="daytime">
+
+                <h2>
+                    <td th:text="${morningAmountPoints+'   Утро   '+morningAmountFinePoints}">Утро</td>
+                </h2>
+
+                <div class="task">
+                    <body th:each="task : ${morningTasks}">
+                            <td>
+                            <form class="form_td">
+                                <label>
+                    <td th:text="${task.text}">Вымыть посуду</td>
+                    <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)"
+                           th:checked="${task.status}"
+                           class="option-input checkbox">
+                                </label>
+                           </form>
+                            </td>
+
+
+                    </body>
+               </div>
+
+               <img src="img/56f54f8f8358c153ae3ec8b2.png" alt="mayble" style="vertical-align: middle" width="170px"
+     th:src="@{/img/56f54f8f8358c153ae3ec8b2.png}">
+
+
     </div>
     <div class="daytasks">
         <div class="daytime">
@@ -77,6 +162,7 @@
                 <td th:text="${task.text}">Вымыть посуду</td>
                 <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
                        class="option-input checkbox"></label></form></p>
+
             </div>
             </td>
             <td>
@@ -94,7 +180,59 @@
                class="option-input checkbox"></label></form></p></div>
     </td>
 
-</body>
+
+            <div class="daytime">
+                <h2>
+                    <td th:text="${afternoonAmountPoints+'   День   '+afternoonAmountFinePoints}">День</td>
+                </h2>
+                <div class="task">
+                    <body th:each="task : ${afternoonTasks}">
+                    <td>
+                        <form class="form_td"><label>
+                    <td th:text="${task.text}">Вымыть посуду</td>
+                    <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                           class="option-input checkbox"></label></form></td>
+                    </body>
+                </div>
+                <img src="img/4decaaa734e702f445c3ac425893bf87.png" alt="mayble" style="vertical-align: middle"
+                     width="220px" th:src="@{/img/4decaaa734e702f445c3ac425893bf87.png}">
+            </div>
+            <div class="daytime">
+                <h2>
+                    <td th:text="${dolgAmountPoints+'   Долг   '+dolgAmountFinePoints}">Долг</td>
+                </h2>
+                <div class="task">
+                    <body th:each="task : ${dolgTasks}">
+                    <td>
+                        <form class="form_td"><label>
+                    <td th:text="${task.text}">Вымыть посуду</td>
+                    <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                           class="option-input checkbox"></label></form></td>
+                    </body>
+                </div>
+                <img src="img/vendy.png" alt="mayble" style="vertical-align: middle" width="130px"
+                     th:src="@{/img/vendy.png}">
+            </div>
+            <div class="daytime">
+                <h2>
+                    <td th:text="${eveningAmountPoints+'   Вечер   '+eveningAmountFinePoints}">Вечер</td>
+                </h2>
+                <div class="task">
+                    <body th:each="task : ${eveningTasks}">
+                    <td>
+                        <form class="form_td"><label>
+                    <td th:text="${task.text}">Вымыть посуду</td>
+                    <input type="checkbox" id="null" th:id="${task.id}" onchange="fun1(this)" th:checked="${task.status}"
+                           class="option-input checkbox"></label></form></td>
+                    </body>
+                </div>
+                <img src="img/32.png" alt="mayble" style="vertical-align: middle" width="160px" th:src="@{/img/32.png}">
+            </div>
+
+        </div>
+    </div>
+
+</body> 
 </div>
 
 <img src="img/56f54f8f8358c153ae3ec8b2.png" alt="mayble" style="vertical-align: middle" width="170px"
@@ -161,7 +299,11 @@
 </div>
 </body>
 
-</html>
+
+    </body>
+
+    </html>
+
 
 
 <script>
@@ -234,6 +376,8 @@
     <
     /script>
 
+
+
     < script >
 
     var dialog = document.querySelector('dialog');
@@ -243,8 +387,6 @@
     document.querySelector('#close').onclick = function () {
         window.location.reload();
         dialog.close();
-
-
     }
 </script>
 
