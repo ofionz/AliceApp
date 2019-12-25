@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +60,10 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         final PurchasesService purcServ = new PurchasesService();
         final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
         int currentBalance = bs.getBalance().getAmount();
+        LocalTime endTime = LocalTime.of(20,30);
 
         //request type status - invert status of current task
-        if (parseRequestType(request).equals("status") && LocalDateTime.now().getHour() < 20) {
+        if (parseRequestType(request).equals("status") && LocalTime.now().isBefore(endTime)) {
             taskService.invertTaskStatus(parseRequestId(request));
         }
 
