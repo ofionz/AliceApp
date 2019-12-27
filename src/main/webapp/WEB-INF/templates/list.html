@@ -39,6 +39,12 @@
             </div>
         </div>
         <div class="home">
+
+            <div class="progress-bar">
+            <p style= "width:40%" th:style="'text-align: right; width:'+(100*((${curPoints}+${allFinePoints})/(${allPoints}+${allFinePoints})))+'%'"  th:text="${curPoints}">000</p>
+            <progress th:max="${allPoints}+${allFinePoints}" max="100" th:value="${curPoints}+${allFinePoints}" value="80" class="html5"></progress>
+            </div>
+
             <p><label> </label><a href="../home.html" th:href="@{/}">На главную страницу</a>
             </p>
             <div id="countdown" class="countdown">

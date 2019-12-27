@@ -31,7 +31,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Base64;
 import java.util.List;
@@ -59,8 +58,11 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         final BalanceService bs = new BalanceService(taskService);
         final PurchasesService purcServ = new PurchasesService();
         final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
-        int currentBalance = bs.getBalance().getAmount();
-        LocalTime endTime = LocalTime.of(20,30);
+        int currentPoints=0;
+        int amountOfAllPoints =0;
+      int  amountOfAllFinePoints=0;
+
+        LocalTime endTime = LocalTime.of(23,30);
 
         //request type status - invert status of current task
         if (parseRequestType(request).equals("status") && LocalTime.now().isBefore(endTime)) {
@@ -89,8 +91,10 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         //here we set all context variable
         for (String key : tasks.keySet()) {
             ctx.setVariable(key + "Tasks", tasks.get(key));
-            int points = getPointsAmount(tasks.get(key));
-            currentBalance += points;
+            int points = getDayTimePointsAmount(tasks.get(key));
+            amountOfAllPoints+=getAmountOfAllPoints(tasks.get(key));
+            amountOfAllFinePoints+=getAmountOfAllFinePoints(tasks.get(key));
+            currentPoints += points;
             if (points>0){
                 ctx.setVariable(key + "AmountPoints", "+" + points+" "+getNumEnding(points));
             }
@@ -98,7 +102,10 @@ public class TaskListController extends PageContoller implements ImplALiceContro
             ctx.setVariable(key + "AmountPoints",  points+" "+getNumEnding(points));
 
         }
-        ctx.setVariable("balance", currentBalance);
+        ctx.setVariable("curPoints", currentPoints);
+        ctx.setVariable("allPoints", amountOfAllPoints);
+        ctx.setVariable("allFinePoints", amountOfAllFinePoints);
+        ctx.setVariable("balance", bs.getBalance().getAmount()+currentPoints);
 
         // start thymleaf process
         templateEngine.process("list", ctx, response.getWriter());
@@ -134,17 +141,33 @@ public class TaskListController extends PageContoller implements ImplALiceContro
     }
 
     /**
-     * getPointsAmount is method  where we calculate amount of
+     * getDayTimePointsAmount is method  where we calculate amount of
      * points in all today tasks
      *
      * @param list - input list
      * @return int output points(default =0)
      */
-    private int getPointsAmount(List<Task> list) {
+    private int getDayTimePointsAmount(List<Task> list) {
         int amount = 0;
         for (Task tsk : list) {
             if (tsk.isStatus()) amount += tsk.getPoints();
             else amount-=tsk.getFinepoints();
+        }
+        return amount;
+    }
+
+    private int getAmountOfAllPoints(List<Task> list) {
+        int amount = 0;
+        for (Task tsk : list) {
+            amount += tsk.getPoints();
+        }
+        return amount;
+    }
+
+    private int getAmountOfAllFinePoints(List<Task> list) {
+        int amount = 0;
+        for (Task tsk : list) {
+            amount += tsk.getFinepoints();
         }
         return amount;
     }
@@ -164,9 +187,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
             switch (i)
             {
                 case (1): end = "очко"; break;
-                case (2):
-                case (3):
-                case (4): end = "очка"; break;
+                case (2):case (3):case (4): end = "очка"; break;
                 default: end = "очков";
             }
         }
