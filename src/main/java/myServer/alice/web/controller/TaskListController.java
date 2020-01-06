@@ -59,8 +59,9 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         final PurchasesService purcServ = new PurchasesService();
         final WebContext ctx = new WebContext(request, response, servletContext, request.getLocale());
         int currentPoints=0;
+        int currentPointsForProgressBar=0;
         int amountOfAllPoints =0;
-      int  amountOfAllFinePoints=0;
+        int  amountOfAllFinePoints=0;
 
         LocalTime endTime = LocalTime.of(23,30);
 
@@ -91,13 +92,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         //here we set all context variable
         for (String key : tasks.keySet()) {
             ctx.setVariable(key + "Tasks", tasks.get(key));
-            // I want continue iterations if dolg tasks now calculate
-            if (key.equals("dolg")){
-                continue;
-            }
             int points = getDayTimePointsAmount(tasks.get(key));
-            amountOfAllPoints+=getAmountOfAllPoints(tasks.get(key));
-            amountOfAllFinePoints+=getAmountOfAllFinePoints(tasks.get(key));
             currentPoints += points;
             if (points>0){
                 ctx.setVariable(key + "AmountPoints", "+" + points+" "+getNumEnding(points));
@@ -105,11 +100,18 @@ public class TaskListController extends PageContoller implements ImplALiceContro
             else
             ctx.setVariable(key + "AmountPoints",  points+" "+getNumEnding(points));
 
+            // I want continue iterations if dolg tasks now calculate
+            if (!key.equals("dolg")){
+                currentPointsForProgressBar += points;
+                amountOfAllPoints+=getAmountOfAllPoints(tasks.get(key));
+                amountOfAllFinePoints+=getAmountOfAllFinePoints(tasks.get(key));
+            }
         }
+        ctx.setVariable("curPointsProgressBar", currentPointsForProgressBar);
         ctx.setVariable("curPoints", currentPoints);
         ctx.setVariable("allPoints", amountOfAllPoints);
         ctx.setVariable("allFinePoints", amountOfAllFinePoints);
-        ctx.setVariable("balance", bs.getBalance().getAmount()+currentPoints);
+        ctx.setVariable("balance", bs.getBalance().getAmount());
 
         // start thymleaf process
         templateEngine.process("list", ctx, response.getWriter());
