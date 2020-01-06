@@ -80,6 +80,7 @@ public class PageContoller {
         return "error";
     }
 
+
     protected Product createProductFromRequest(HttpServletRequest request) {
         Product result = null;
 
@@ -88,11 +89,6 @@ public class PageContoller {
             String text = request.getParameter("text");
             String points = request.getParameter("points");
             if (text != null && points != null) {
-                ByteBuffer buf = Charset.forName("ISO-8859-1").encode(text);
-                byte[] b = buf.array();
-                text = new String(b);
-
-
                 try {
                     poi = Integer.parseInt(points);
                     if (poi < 0) throw new NumberFormatException();
@@ -116,9 +112,6 @@ public class PageContoller {
             String name = request.getParameter("name");
             String url = request.getParameter("url");
             if (name != null && url != null) {
-                ByteBuffer buf = Charset.forName("ISO-8859-1").encode(name);
-                byte[] b = buf.array();
-                name = new String(b);
 
                 result = new Book(name, url);
 
@@ -147,9 +140,6 @@ public class PageContoller {
 
             if (time != null && text != null && points != null && finePoints != null) {
                 if (time.contains("morning") || time.contains("afternoon") || time.contains("evening") || time.contains("dolg")) {
-                    ByteBuffer buf = Charset.forName("ISO-8859-1").encode(text);
-                    byte[] b = buf.array();
-                    text = new String(b);
                     try {
                         poi = Integer.parseInt(points);
                         fin = Integer.parseInt(finePoints);

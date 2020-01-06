@@ -51,6 +51,7 @@ public class AliceFilter implements Filter {
                          final FilterChain chain) throws IOException, ServletException {
 
         if (request instanceof HttpServletRequest) {
+            request.setCharacterEncoding("UTF-8");
             boolean url = ((HttpServletRequest) request).getRequestURL().toString().contains("settings");
             String rootSession = (String) ((HttpServletRequest) request).getSession().getAttribute("admin");
 
