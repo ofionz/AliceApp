@@ -91,6 +91,10 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         //here we set all context variable
         for (String key : tasks.keySet()) {
             ctx.setVariable(key + "Tasks", tasks.get(key));
+            // I want continue iterations if dolg tasks now calculate
+            if (key.equals("dolg")){
+                continue;
+            }
             int points = getDayTimePointsAmount(tasks.get(key));
             amountOfAllPoints+=getAmountOfAllPoints(tasks.get(key));
             amountOfAllFinePoints+=getAmountOfAllFinePoints(tasks.get(key));
