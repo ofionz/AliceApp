@@ -63,7 +63,7 @@ public class TaskListController extends PageContoller implements ImplALiceContro
         int amountOfAllPoints =0;
         int  amountOfAllFinePoints=0;
 
-        LocalTime endTime = LocalTime.of(23,30);
+        LocalTime endTime = LocalTime.of(20,30);
 
         //request type status - invert status of current task
         if (parseRequestType(request).equals("status") && LocalTime.now().isBefore(endTime)) {
