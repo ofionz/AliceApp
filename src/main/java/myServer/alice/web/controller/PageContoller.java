@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 
-public class PageContoller {
+abstract public class PageContoller {
 
     private static final Logger log = Logger.getLogger(PageContoller.class);
 
