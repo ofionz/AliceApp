@@ -31,18 +31,21 @@ public class Task {
     @Column(name = "finepoints")
     private Integer finepoints = null;
 
+    @Column(name = "dayofweeks")
+    private boolean[] dayOfWeeks = null;
 
     public Task() {
 
     }
 
-    public Task(String text, LocalDate date, boolean status, String timeOfDay, Integer points, Integer finepoints) {
+    public Task(String text, LocalDate date, boolean status, String timeOfDay, Integer points, Integer finepoints, boolean[] dayOfWeeks) {
         this.text = text;
         this.date = date;
         this.status = status;
         this.timeOfDay = timeOfDay;
         this.points = points;
         this.finepoints = finepoints;
+        this.dayOfWeeks=dayOfWeeks;
     }
 
 
@@ -61,6 +64,14 @@ public class Task {
     public Task setPoints(Integer points) {
         this.points = points;
         return this;
+    }
+
+    public boolean[] getDayOfWeeks() {
+        return dayOfWeeks;
+    }
+
+    public void setDayOfWeeks(boolean[] dayOfWeeks) {
+        this.dayOfWeeks = dayOfWeeks;
     }
 
     public Integer getFinepoints() {

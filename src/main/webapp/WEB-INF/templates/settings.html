@@ -70,8 +70,10 @@
                             <div class="col-md">
                                 <input type="hidden" name="time" value="morning">
                                 <input type="hidden" name="id">
+
                                 <input name="text" type="text" class="colortext colortext_1"
                                        placeholder="Текст задания">
+
                             </div>
                         </div>
                     </div>
@@ -115,6 +117,15 @@
                                 <input type="hidden" name="id" th:value="${task.id}">
                                 <input name="text" type="text" th:id="${task.id}+'txt'" th:value="${task.text}"
                                        class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" id="dOW0" name="dOW0" >ПН
+                                <input type="checkbox" id="dOW1" name="dOW1" >ВТ
+                                <input type="checkbox" id="dOW2" name="dOW2" >СР
+                                <input type="checkbox" id="dOW3" name="dOW3" >ЧТ
+                                <input type="checkbox" id="dOW4" name="dOW4" >ПТ
+                                <input type="checkbox" id="dOW5" name="dOW5" >СБ
+                                <input type="checkbox" id="dOW6" name="dOW6" >ВС
                             </div>
                         </div>
                     </div>

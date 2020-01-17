@@ -3,12 +3,9 @@ package myServer.alice.web.controller;
 import myServer.alice.business.entities.Book;
 import myServer.alice.business.entities.Product;
 import myServer.alice.business.entities.Task;
-import myServer.alice.business.services.TaskService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.time.LocalDate;
 
 abstract public class PageContoller {
@@ -137,6 +134,7 @@ abstract public class PageContoller {
             String text = request.getParameter("text");
             String points = request.getParameter("points");
             String finePoints = request.getParameter("finepoints");
+            boolean [] dayOfWeeks= parseDayOfWeek (request);
 
             if (time != null && text != null && points != null && finePoints != null) {
                 if (time.contains("morning") || time.contains("afternoon") || time.contains("evening") || time.contains("dolg")) {
@@ -145,14 +143,25 @@ abstract public class PageContoller {
                         fin = Integer.parseInt(finePoints);
                         if (poi < 0 || fin < 0) throw new NumberFormatException();
                     } catch (NumberFormatException nm) {
-                        result = new Task("Neverno kolichestvo ochkov", LocalDate.now(), false, time, poi, fin);
+                        result = new Task("Neverno kolichestvo ochkov", LocalDate.now(), false, time, poi, fin,dayOfWeeks);
                         return result;
                     }
 
-                    result = new Task(text, LocalDate.now(), false, time, poi, fin);
+                    result = new Task(text, LocalDate.now(), false, time, poi, fin,dayOfWeeks);
                 }
-            } else result = new Task("odin iz parametrov = null", LocalDate.now(), false, "morning", poi, fin);
+            } else result = new Task("odin iz parametrov = null", LocalDate.now(), false, "morning", poi, fin,dayOfWeeks);
         }
         return result;
+    }
+
+    private boolean[] parseDayOfWeek(HttpServletRequest request) {
+      boolean [] result = new boolean [7];
+        for (int i=0;i<7;i++){
+           if (request.getParameter("dOW"+i)!=null){
+               result[i]=true;
+           }
+        }
+        return result;
+
     }
 }
