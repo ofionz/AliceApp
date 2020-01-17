@@ -32,13 +32,13 @@ public class Task {
     private Integer finepoints = null;
 
     @Column(name = "dayofweeks")
-    private boolean[] dayOfWeeks = null;
+    private String dayOfWeeks = null;
 
     public Task() {
 
     }
 
-    public Task(String text, LocalDate date, boolean status, String timeOfDay, Integer points, Integer finepoints, boolean[] dayOfWeeks) {
+    public Task(String text, LocalDate date, boolean status, String timeOfDay, Integer points, Integer finepoints, String dayOfWeeks) {
         this.text = text;
         this.date = date;
         this.status = status;
@@ -66,11 +66,15 @@ public class Task {
         return this;
     }
 
-    public boolean[] getDayOfWeeks() {
+    public String getDayOfWeeks() {
         return dayOfWeeks;
     }
+    public boolean isDayOfWeek(char ch) {
+       if (dayOfWeeks.toCharArray()[Character.getNumericValue(ch)]=='1')return true;
+       return false;
+    }
 
-    public void setDayOfWeeks(boolean[] dayOfWeeks) {
+    public void setDayOfWeeks(String dayOfWeeks) {
         this.dayOfWeeks = dayOfWeeks;
     }
 
@@ -115,6 +119,7 @@ public class Task {
         this.timeOfDay = timeOfDay;
         return this;
     }
+
 
     @Override
     public boolean equals(Object o) {

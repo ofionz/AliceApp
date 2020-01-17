@@ -19,7 +19,6 @@
  */
 package myServer.alice.business.services;
 
-import myServer.alice.business.entities.DB.HibernateSessionFactoryUtil;
 import myServer.alice.business.entities.DB.TaskDAO;
 import myServer.alice.business.entities.DB.TaskDaoImpl;
 import myServer.alice.business.entities.Task;
@@ -82,6 +81,7 @@ public class TaskService {
         task.setText(task2.getText());
         task.setPoints(task2.getPoints());
         task.setFinepoints(task2.getFinepoints());
+        task.setDayOfWeeks(task2.getDayOfWeeks());
 
         taskDao.update(task);
     }
@@ -142,7 +142,7 @@ public class TaskService {
     private Map<String, List<Task>> splitByTimeOfDay(List<Task> list) {
         if (list==null||list.size() == 0) {
             log.warn("empty base! ");
-            list.add(new Task("empty base", LocalDate.now(), false, "morning", 0, 0));
+            list.add(new Task("empty base", LocalDate.now(), false, "morning", 0, 0, ""));
         } else {
             Comparator<Task> comparator = Comparator.comparing(obj -> obj.getId());
             list.sort(comparator);

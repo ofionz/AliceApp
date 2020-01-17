@@ -118,12 +118,7 @@ public class AliceFilter implements Filter {
             return true;
 
         } catch (Exception e) {
-            try {
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            } catch (final IOException ignored) {
-                // Just ignore this
 
-            }
             throw new ServletException(e);
         }
 

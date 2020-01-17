@@ -134,7 +134,7 @@ abstract public class PageContoller {
             String text = request.getParameter("text");
             String points = request.getParameter("points");
             String finePoints = request.getParameter("finepoints");
-            boolean [] dayOfWeeks= parseDayOfWeek (request);
+            String dayOfWeeks= parseDayOfWeek (request);
 
             if (time != null && text != null && points != null && finePoints != null) {
                 if (time.contains("morning") || time.contains("afternoon") || time.contains("evening") || time.contains("dolg")) {
@@ -154,14 +154,15 @@ abstract public class PageContoller {
         return result;
     }
 
-    private boolean[] parseDayOfWeek(HttpServletRequest request) {
-      boolean [] result = new boolean [7];
+    private String parseDayOfWeek(HttpServletRequest request) {
+      char ch [] = new char[7];
         for (int i=0;i<7;i++){
            if (request.getParameter("dOW"+i)!=null){
-               result[i]=true;
+              ch[i]='1';
            }
+           else ch[i]='0';
         }
-        return result;
+        return new String(ch);
 
     }
 }
