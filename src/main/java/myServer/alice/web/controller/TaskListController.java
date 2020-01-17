@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Base64;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -91,8 +92,18 @@ public class TaskListController extends PageContoller implements ImplALiceContro
 
         //here we set all context variable
         for (String key : tasks.keySet()) {
-            ctx.setVariable(key + "Tasks", tasks.get(key));
-            int points = getDayTimePointsAmount(tasks.get(key));
+            List <Task> currentTasks =  tasks.get(key);
+           int dayOfWeecCode= LocalDate.now().getDayOfWeek().getValue()-1;
+            Iterator iterator = currentTasks.iterator();
+            while (iterator.hasNext()) {
+                Task ts =(Task) iterator.next();
+                if (!ts.isDayOfWeek(dayOfWeecCode)) {
+                    iterator.remove();
+                }
+            }
+
+            ctx.setVariable(key + "Tasks",currentTasks);
+            int points = getDayTimePointsAmount(currentTasks);
             currentPoints += points;
             if (points>0){
                 ctx.setVariable(key + "AmountPoints", "+" + points+" "+getNumEnding(points));
@@ -103,8 +114,8 @@ public class TaskListController extends PageContoller implements ImplALiceContro
             // I want continue iterations if dolg tasks now calculate
             if (!key.equals("dolg")){
                 currentPointsForProgressBar += points;
-                amountOfAllPoints+=getAmountOfAllPoints(tasks.get(key));
-                amountOfAllFinePoints+=getAmountOfAllFinePoints(tasks.get(key));
+                amountOfAllPoints+=getAmountOfAllPoints(currentTasks);
+                amountOfAllFinePoints+=getAmountOfAllFinePoints(currentTasks);
             }
         }
         ctx.setVariable("curPointsProgressBar", currentPointsForProgressBar);

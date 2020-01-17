@@ -73,6 +73,10 @@ public class Task {
        if (dayOfWeeks.toCharArray()[Character.getNumericValue(ch)]=='1')return true;
        return false;
     }
+    public boolean isDayOfWeek(int code) {
+        if (dayOfWeeks.toCharArray()[code]=='1')return true;
+        return false;
+    }
 
     public void setDayOfWeeks(String dayOfWeeks) {
         this.dayOfWeeks = dayOfWeeks;

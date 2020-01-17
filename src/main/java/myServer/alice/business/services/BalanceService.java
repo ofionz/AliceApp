@@ -59,14 +59,18 @@ public class BalanceService {
 
 
         while (balance.getDate().isBefore(yesterday)) {
-            List<Task> taskList = ts.findBy(balance.getDate().plusDays(1));
+            LocalDate currentDate =balance.getDate().plusDays(1);
+            List<Task> taskList = ts.findBy(currentDate);
             int temp = balance.getAmount();
             balance.setPromocode(false);
 
             for (Task currTask : taskList) {
-                if (currTask.isStatus()) {
-                    temp += currTask.getPoints();
-                } else temp -= currTask.getFinepoints();
+                int dayNumber = currentDate.getDayOfWeek().getValue()-1;
+                if (currTask.isDayOfWeek(dayNumber)) {
+                    if (currTask.isStatus()) {
+                        temp += currTask.getPoints();
+                    } else temp -= currTask.getFinepoints();
+                }
             }
             balance.setDate(balance.getDate().plusDays(1));
             balance.setAmount(temp);
