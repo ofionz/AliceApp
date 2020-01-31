@@ -197,20 +197,20 @@
     var currtime = new Date();
     if (currtime.getHours()<12){
         deadtime.setHours(12);
-        deadtime.setMinutes(00);
-        deadtime.setSeconds(00);
+        deadtime.setMinutes(0);
+        deadtime.setSeconds(0);
        document.getElementById("labelday").innerHTML='до окончания утра';
     }
     else if (currtime.getHours()>=12&&currtime.getHours()<20){
         deadtime.setHours(16);
-        deadtime.setMinutes(00);
-        deadtime.setSeconds(00);
+        deadtime.setMinutes(0);
+        deadtime.setSeconds(0);
         document.getElementById("labelday").innerHTML='до окончания дня';
     }
     else {
         deadtime.setHours(20);
         deadtime.setMinutes(30);
-        deadtime.setSeconds(00);
+        deadtime.setSeconds(0);
         document.getElementById("labelday").innerHTML='до окончания вечера';
     }
 
