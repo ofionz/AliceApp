@@ -61,7 +61,9 @@
                     <span class="countdown-text">Секунд</span>
                 </div>
             </div>
+            <label style="color: white" id="labelday">До окончания дня</label>
         </div>
+
     </div>
 
     <div class="daytasks">
@@ -192,13 +194,30 @@
     }
 
     var deadtime = new Date();
-    deadtime.setHours(20);
-    deadtime.setMinutes(30);
-    deadtime.setSeconds(00);
-    var deadline = new Date(Date.parse(deadtime)); // for endless timer
+    var currtime = new Date();
+    if (currtime.getHours()<12){
+        deadtime.setHours(12);
+        deadtime.setMinutes(00);
+        deadtime.setSeconds(00);
+       document.getElementById("labelday").innerHTML='до окончания утра';
+    }
+    else if (currtime.getHours()>=12&&currtime.getHours()<20){
+        deadtime.setHours(16);
+        deadtime.setMinutes(00);
+        deadtime.setSeconds(00);
+        document.getElementById("labelday").innerHTML='до окончания дня';
+    }
+    else {
+        deadtime.setHours(20);
+        deadtime.setMinutes(30);
+        deadtime.setSeconds(00);
+        document.getElementById("labelday").innerHTML='до окончания вечера';
+    }
+
+   // var deadline = new Date(Date.parse(deadtime));  for endless timer
 
 
-    initializeClock('countdown', deadline);
+    initializeClock('countdown', deadtime);
 
     function fun1(chbox) {
         var form = document.createElement('form');

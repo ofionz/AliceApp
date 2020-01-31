@@ -107,6 +107,9 @@ dialog {
 }
 
 .home {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     align-self: center;
     margin: 10px;
 }
