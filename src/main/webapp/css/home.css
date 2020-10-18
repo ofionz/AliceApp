@@ -1,9 +1,15 @@
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
-
+h1, h2{
+    color:  #b20000;
+    font-size: 30px;
+}
+header{
+    margin-bottom: 20px;
+}
 .container {
     width: 100%;
     min-height: 100vh;
@@ -15,74 +21,44 @@
     font-size: 20px;
     font-weight: 900;
     text-transform: uppercase;
-    background: url(../img/bg_img.jpg);
-    background-size: contain;
-    background-attachment: fixed;
-    background-position: center;
+    background: url(../img/hp/cor.jpg) fixed center;
+    background-size: cover;
     letter-spacing: 2px;
     color: white;
-}
-
-a {
-    color: rgb(248, 234, 228);
-    text-decoration: none;
-}
-
-h1, h2 {
-    padding: 5px;
-    font-size: 4vh;
-    background: rgba(254, 149, 1, 0.81);
-    color: rgba(11, 55, 60, 1);
-}
-
-h1 {
-    margin-top: 5px;
-}
-
-h1:hover {
-
-    color: white;
-}
-
-h2 {
-    font-size: 30px;
-    text-decoration: underline;
-}
-
-h2:hover {
-    color: white;
-}
-
-span:hover {
-    color: rgba(254, 149, 1, 0.81);
-}
-
-span {
-    padding: 5px;
-    font-size: 20px;
-    letter-spacing: 3px;
-    background: rgba(11, 55, 60, 0.62);
-    text-align: center;
+    padding-bottom: 20px;
 }
 
 .pages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: auto;
+    gap: 30px 10px;
 }
 
-.tasks_page, .shop_page, .profile_page, .settings_page {
+.pages__item{
     margin: 10px;
     font-size: 25px;
     display: flex;
     align-items: center;
 }
+.pages__item span a{
+    color: #000;
+}
+.pages__item span a, h1, h2{
+    text-shadow: 0 -3px 0 #f7f7b6, 0 3px 0 #ffd700, -3px 0 #e5e619, 3px 0 #e5e619, -3px -3px 0 #ffc30f, 3px -3px 0 #ffc30f, 3px 3px 0 #ffff00, -3px 3px 0 #ffff00;
+    font-family: 'HP', sans-serif;
+}
+.pages__item img{
+    width: 100px;
+    margin-right: 20px;
+}
 
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    margin-top: auto;
+}
 
+@font-face {
+    font-family: 'HP';
+    src: url('../fonts/HP.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }

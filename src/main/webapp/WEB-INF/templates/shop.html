@@ -10,40 +10,51 @@
 </head>
 <body>
 <div class="container">
-    <div class="shop_head">
+    <div class="shop-head">
         <div class="points_balance">
-            <div class="bill">
-                <img src="img/bill.png" width="100px;" id="show">
+            <div class="points_balance__wrap">
+                <dialog>
+                    <form role="form" action="list" method="post">
+                        <p>ВВЕДИ СЕКРЕТНЫЙ КОД</p>
+                        <input name="text" id="promocode" type="text" value>
+                        <button type="submit" id="close" name="type" value="promo"
+                                onclick="document.pressed=this.value()">Отправить
+                        </button>
+                    </form>
+                </dialog>
+                <img src="../../../webapp/img/hp/dm.png" id="show" class="points__img">
             </div>
             <div class="points_all">
                 <td th:text="${balance}">000</td>
             </div>
-            <img src="img/bill2.1.png" width="100px;" id="show">
+            <div class="points_balance__wrap">
+                <dialog>
+                    <form>
+                        <p>Это окно для отправки промокода на сервер</p>
+                        <button id="close">Отправить</button>
+                    </form>
+                </dialog>
+                <img src="../../../webapp/img/hp/dm.png" id="show" class="points__img points__img_scale">
+            </div>
         </div>
-        <div class="home">
-            <p><label> </label><a href="../home.html" th:href="@{/}">На главную страницу</a>
-            </p>
-        </div>
+        <p><label> </label><a href="../home.html" th:href="@{/}" class="link">На главную страницу</a></p>
     </div>
-    <div class="shop_body">
-        <div class="shop_left">
-            <h2>Товары хижины </h2>
-            <div class="shop_card">
+    <div class="shop-body">
+        <div class="shop-body__item">
+            <h2>Волшебные вредилки</h2>
+            <div class="shop-body__card">
 
                 <body th:each="product : ${products}">
                 <form action="shop" method="post">
                     <input type="hidden" name="id" th:value="${product.id}">
-                       <div class="card">
-                        <h3>
+                    <div class="card">
+                        <span>
                             <td th:text="${product.text}">игрушка за 200 рублей</td>
-                        </h3>
-                        <div class="price_field">
-                            <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
-                                    class="price">
-                                <td th:text="${product.price}">000</td>
-                            </button>
-                            <img src="img/Bill3.png" th:src="@{/img/Bill3.png}" width="20%">
-                        </div>
+                        </span>
+                        <button type="submit" name="type" value="buy" onclick="document.pressed=this.value()"
+                                class="price">
+                            <td th:text="${product.price}">000</td>
+                        </button>
                     </div>
                 </form>
 
@@ -52,20 +63,20 @@
 
             </div>
         </div>
-        <div class="shop_right">
+        <div class="shop-body__item">
             <h2>История покупок</h2>
-            <div class="shop_history">
+            <div class="shop-body__card">
 
                 <body th:each="purch : ${purchases}">
-                <div class="history">
-                    <span><td th:text="${purch.date}">2000.10.12</td></span>
-                    <h3>
-                        <td th:text="${purch.text}">Товар 1</td>
-                    </h3>
-                    <span><td th:text="${purch.price}">100</td></span>
-
+                <div class="card">
+                    <span>
+                        <td th:text="${purch.text}">dgdddgdggddg</td>
+                    </span>
+                    <span><td th:text="${purch.price}">000</td></span>
                 </div>
+
                 </body>
+
             </div>
 
         </div>

@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: url(../img/bg_img.jpg);
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+    letter-spacing: 2px;
+    color: white;
+}
+
+a {
+    color: rgb(248, 234, 228);
+    text-decoration: none;
+}
+
+h1, h2 {
+    padding: 5px;
+    font-size: 4vh;
+    background: rgba(254, 149, 1, 0.81);
+    color: rgba(11, 55, 60, 1);
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1:hover {
+
+    color: white;
+}
+
+h2 {
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+h2:hover {
+    color: white;
+}
+
+span:hover {
+    color: rgba(254, 149, 1, 0.81);
+}
+
+span {
+    padding: 5px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    background: rgba(11, 55, 60, 0.62);
+    text-align: center;
+}
+
+.pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.tasks_page, .shop_page, .profile_page, .settings_page {
+    margin: 10px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}

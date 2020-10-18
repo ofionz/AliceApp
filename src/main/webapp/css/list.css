@@ -1,12 +1,31 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
 
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    background: url(../img/hp/hall.jpg) fixed center;
+    background-size: cover;
+    letter-spacing: 0.2em;
+    color: #fff;
+    padding-bottom: 20px;
+}
+
+#labelday {
+    text-decoration: underline;
+    letter-spacing: 0.2em;
 }
 
 
 .countdown {
-    font-family: sans-serif;
+    margin-bottom: 10px;
     color: #fff;
     display: inline-block;
     font-weight: 700;
@@ -17,14 +36,14 @@
 .countdown-number {
     padding: 8px;
     border-radius: 7px;
-    background: #ae380878;
+    background: #c2000078;
     display: inline-block;
 }
 
 .countdown-time {
     padding: 10px;
     border-radius: 3px;
-    background: #7157448a;
+    background: #1818188a;
     display: inline-block;
 }
 
@@ -35,32 +54,17 @@
 }
 
 
-.container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: rgb(13, 56, 54);
-    background: url(../img/bg_list.jpg);
-    background-size: contain;
-    background-attachment: fixed;
-    background-position: center;
-    letter-spacing: 2px;
-}
-
 .daytasks_head, .dayend {
-    min-height: 6vh;
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background: url(../img/Gravity_Falls_logo.svgUPPER.png) repeat-x;
-    background-size: contain;
+}
+
+.daytasks_head p {
+    margin: 0 auto;
 }
 
 dialog {
@@ -84,26 +88,104 @@ dialog {
 }
 
 .points_balance {
-    width: 350px;
     display: flex;
-    flex-wrap: nowrap;
-    padding: 5px;
+    flex-wrap: wrap;
     justify-content: center;
-    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
-    border: 4px solid #000;
-    border-radius: 40px;
+    height: 230px;
+    background: url(../img/hp/Hogwartscrest.png) no-repeat center;
+    background-size: contain;
 }
 
 .points_all {
-    margin-top: 20px;
-    text-align: center;
-    font-family: 'Poiret One', cursive;
-    font-size: 70px;
+    margin-top: auto;
+    font-size: 50px;
     font-weight: 800;
-    color: rgba(255, 226, 0, 0.94);
-    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
-    #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
-    rgb(13, 56, 54) 9px 5px 0;
+}
+
+.points_all, .progress-bar p, .daytime h2 {
+    font-family: 'HP', sans-serif;
+}
+.progress-bar p, #labelday, .link{
+    text-shadow: #1a1a1a 2px 2px 0;
+}
+
+.progress-bar p, #labelday, .link{
+    color: rgb(246 246 246 / 94%);
+}
+.points_all, .daytime h2 {
+    text-shadow: 0 -3px 0 #f7f7b6, 0 3px 0 #ffd700, -3px 0 #e5e619, 3px 0 #e5e619, -3px -3px 0 #ffc30f, 3px -3px 0 #ffc30f, 3px 3px 0 #ffff00, -3px 3px 0 #ffff00;
+    color: #b20000;
+}
+
+.points_balance__wrap{
+    display: flex;
+}
+
+#labelday, .link, .daytime h2 {
+    letter-spacing: 0.3em;
+}
+
+
+.link, #labelday {
+    font-size: 13px;
+}
+
+.points__img {
+    width: 100px;
+    margin-top: auto;
+}
+
+.points__img_scale {
+    transform: scale(-1, 1);
+}
+
+.progress-bar {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0 auto;
+}
+
+.progress-bar p {
+    color: #432424;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+}
+
+progress {
+    background-color: #f3f3f3;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress {
+    background-color: #f3f3f3;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f3f3f3;
+    border: 0;
+    height: 18px;
+    border-radius: 9px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(270deg, rgba(102, 0, 0, 1) 2%, rgba(184, 20, 20, 1) 31%, rgba(199, 29, 4, 0.8575805322128851) 53%, rgba(254, 174, 0, 0.9640231092436975) 70%, rgba(252, 220, 0, 1) 83%, rgba(240, 218, 16, 1) 100%);
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #f3f3f3;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
 }
 
 .home {
@@ -114,60 +196,38 @@ dialog {
     margin: 10px;
 }
 
-a {
-    color: rgb(247, 247, 247);
-    text-decoration: none;
-    background-color: #ac4e20a8;
-    font-size: 25px;
-}
-
 .daytasks {
     padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-
-
-}
-h2 {
-    width: 40vh;
-    margin: 10px;
-    text-align: center;
-    color: #ffffff;
-    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgba(254, 76, 6, 0.61) 100%);
-    border: 3px dotted rgb(13, 56, 54);
-    border-radius: 40px;
-}
-
-h2:hover {
-    background-color: rgb(13, 56, 54);
+    display: grid;
+    grid-gap: 30px 10px;
+    grid-template-columns: repeat(4, auto);
+    margin: 0 auto;
 }
 
 .daytime {
-    padding: 0px 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
-.task {
-    width: 240px;
-    margin: 5px;
-    padding: 10px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 3px dotted #f06f10;
-    border-radius: 40px;
+.daytime h2 {
+    margin-bottom: 10px;
 }
 
-.task:hover {
-    background-color: antiquewhite;
+.daytime img {
+    margin-top: auto;
+    width: 80%;
 }
-.form_td{
+
+.form_td {
+    color: #ffc800;
+    font-weight: 700;
+    background: rgb(102 0 0 / 46%) 2%;
     font-size: 18px;
     padding: 10px;
-    border-bottom: 1px dotted #f06f10;
+    margin-bottom: 5px;
 }
+
 
 @keyframes click-wave {
     0% {
@@ -200,7 +260,7 @@ h2:hover {
     width: 15px;
     margin: 5px;
     transition: all 0.15s ease-out 0s;
-    background: rgb(0, 0, 0);
+    background: rgb(255 255 255);
     color: #fff;
     cursor: pointer;
     display: inline-block;
@@ -210,12 +270,8 @@ h2:hover {
     z-index: 1000;
 }
 
-.option-input:hover {
-    background: #f06f10;
-}
-
 .option-input:checked {
-    background-color: rgb(13, 56, 54);
+    background: rgb(102 0 0 / 46%) 2%;
 }
 
 .option-input:checked::before {
@@ -227,7 +283,7 @@ h2:hover {
     font-size: 29.66667px;
     text-align: center;
     line-height: 20px;
-    color: #f06f10;
+    color: #88ff00;
 }
 
 .option-input:checked::after {
@@ -247,6 +303,19 @@ h2:hover {
 
 .option-input.radio::after {
     border-radius: 50%;
+}
+@media (max-width: 700px) {
+    .daytasks {
+        grid-template-columns:auto;
+    }
+
+}
+
+@font-face {
+    font-family: 'HP';
+    src: url('../fonts/HP.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 

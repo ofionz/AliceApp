@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Settings</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/settings.css" th:href="@{/css/settings.css}"/>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css}"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <script language="javascript"> <!--открыть форму-->
+    function AddItem(btn) {
+        var id = btn.getAttributeNode("id").value;
+        var formId = btn.getAttributeNode("form").value;
+        document.getElementById(formId).hidden = false;
+        document.getElementById(id).hidden = true;
+    }
+    </script>
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="daytasks_head">
+        <form id="formbalance" action="settings" method="post">
+            <input type="hidden" form="formbalance" name="type" value="editbalance">
+            <input type="text" form="formbalance" onchange=form.submit() th:value="${balance.amount}" name="amount">
+        </form>
+        <div class="home">
+            <p>
+            <form method="post" action="login">
+                <button type="submit" value="logout" name="type">Выйти из настроек</button>
+            </form>
+            <form method="post" action="settings" class="promo_field">
+                <input type="hidden" name="type" value="promo">
+                <input type="text" value="" th:value="${promo}" onchange=form.submit() name="text"
+                       placeholder="Нужное количество очков"> </input>
+
+            </form>
+
+
+            </p>
+        </div>
+    </div>
+    <div class="daytasks">
+        <div class="row row-daytime">
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">Утро</label>
+                    <button type="button" form="-1" class="btn btn-add" onClick="AddItem(this)" id="add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-1">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="morning">
+                                <input type="hidden" name="id">
+
+                                <input name="text" type="text" class="colortext colortext_1"
+                                       placeholder="Текст задания">
+
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" id="newdOW0" name="dOW0" >ПН
+                                <input type="checkbox" id="newdOW1" name="dOW1" >ВТ
+                                <input type="checkbox" id="newdOW2" name="dOW2" >СР
+                                <input type="checkbox" id="newdOW3" name="dOW3" >ЧТ
+                                <input type="checkbox" id="newdOW4" name="dOW4" >ПТ
+                                <input type="checkbox" id="newdOW5" name="dOW5" >СБ
+                                <input type="checkbox" id="newdOW6" name="dOW6" >ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" class="colortext colortext_2" min="0"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" class="colortext colortext_3" id="finepoints"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="update"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="delete"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <body th:each="task : ${morningTasks}">
+            <form role="form" class="form-inline" th:id="${task.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="morning">
+                                <input type="hidden" name="id" th:value="${task.id}">
+                                <input name="text" type="text" th:id="${task.id}+'txt'" th:value="${task.text}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" id="dOW0" name="dOW0"  th:checked="${task.isDayOfWeek('0')}" >ПН
+                                <input type="checkbox" id="dOW1" name="dOW1" th:checked="${task.isDayOfWeek('1')}">ВТ
+                                <input type="checkbox" id="dOW2" name="dOW2" th:checked="${task.isDayOfWeek('2')}" >СР
+                                <input type="checkbox" id="dOW3" name="dOW3" th:checked="${task.isDayOfWeek('3')}">ЧТ
+                                <input type="checkbox" id="dOW4" name="dOW4" th:checked="${task.isDayOfWeek('4')}" >ПТ
+                                <input type="checkbox" id="dOW5" name="dOW5" th:checked="${task.isDayOfWeek('5')}">СБ
+                                <input type="checkbox" id="dOW6" name="dOW6" th:checked="${task.isDayOfWeek('6')}">ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" th:value="${task.points}"
+                                       class="colortext colortext_2" min="0" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" th:value="${task.finepoints}"
+                                       class="colortext colortext_3" id="finepoints" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${task.id}+'upd'" th:form="${task.id}"
+                                name="type" value="update" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${task.id}+'del'" th:form="${task.id}"
+                                name="type" value="delete" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </body>
+        </div> <!--конец конkт-ра дня УТРО-->
+
+        <div class="row row-daytime">
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">День</label>
+                    <button type="button" form="-2" class="btn btn-add" onClick="AddItem(this)" id="add1">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-2">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="afternoon">
+                                <input type="hidden" name="id">
+                                <input name="text" type="text" class="colortext colortext_1"
+                                       placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"   >ПН
+                                <input type="checkbox"  name="dOW1" >ВТ
+                                <input type="checkbox"  name="dOW2"  >СР
+                                <input type="checkbox"  name="dOW3" >ЧТ
+                                <input type="checkbox"  name="dOW4"  >ПТ
+                                <input type="checkbox"  name="dOW5" >СБ
+                                <input type="checkbox" name="dOW6" >ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" class="colortext colortext_2" min="0"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" class="colortext colortext_3" id="finepoints"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="update"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="delete"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <body th:each="task : ${afternoonTasks}">
+            <form role="form" class="form-inline" th:id="${task.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="afternoon">
+                                <input type="hidden" name="id" th:value="${task.id}">
+                                <input name="text" type="text" th:id="${task.id}+'txt'" th:value="${task.text}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"  th:checked="${task.isDayOfWeek('0')}" >ПН
+                                <input type="checkbox"  name="dOW1" th:checked="${task.isDayOfWeek('1')}">ВТ
+                                <input type="checkbox"  name="dOW2" th:checked="${task.isDayOfWeek('2')}" >СР
+                                <input type="checkbox"  name="dOW3" th:checked="${task.isDayOfWeek('3')}">ЧТ
+                                <input type="checkbox"  name="dOW4" th:checked="${task.isDayOfWeek('4')}" >ПТ
+                                <input type="checkbox"  name="dOW5" th:checked="${task.isDayOfWeek('5')}">СБ
+                                <input type="checkbox" name="dOW6" th:checked="${task.isDayOfWeek('6')}">ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" th:value="${task.points}"
+                                       class="colortext colortext_2" min="0" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" th:value="${task.finepoints}"
+                                       class="colortext colortext_3" id="finepoints" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${task.id}+'upd'" th:form="${task.id}"
+                                name="type" value="update" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${task.id}+'del'" th:form="${task.id}"
+                                name="type" value="delete" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+            </body>
+        </div> <!--конец конkт-ра дня ДЕНЬ-->
+
+        <div class="row row-daytime"><!-начало конт-ра дня>
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">дело</label>
+                    <button type="button" form="-3" class="btn btn-add" onClick="AddItem(this)" id="add2">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-3">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="dolg">
+                                <input type="hidden" name="id">
+                                <input name="text" type="text" class="colortext colortext_1"
+                                       placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"   >ПН
+                                <input type="checkbox"  name="dOW1" >ВТ
+                                <input type="checkbox"  name="dOW2"  >СР
+                                <input type="checkbox"  name="dOW3" >ЧТ
+                                <input type="checkbox"  name="dOW4"  >ПТ
+                                <input type="checkbox"  name="dOW5" >СБ
+                                <input type="checkbox" name="dOW6" >ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" class="colortext colortext_2" min="0"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" class="colortext colortext_3" id="finepoints"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="update"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="delete"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+            <body th:each="task : ${dolgTasks}">
+            <form role="form" class="form-inline" th:id="${task.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="dolg">
+                                <input type="hidden" name="id" th:value="${task.id}">
+                                <input name="text" type="text" th:id="${task.id}+'txt'" th:value="${task.text}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"  th:checked="${task.isDayOfWeek('0')}" >ПН
+                                <input type="checkbox"  name="dOW1" th:checked="${task.isDayOfWeek('1')}">ВТ
+                                <input type="checkbox"  name="dOW2" th:checked="${task.isDayOfWeek('2')}" >СР
+                                <input type="checkbox"  name="dOW3" th:checked="${task.isDayOfWeek('3')}">ЧТ
+                                <input type="checkbox"  name="dOW4" th:checked="${task.isDayOfWeek('4')}" >ПТ
+                                <input type="checkbox"  name="dOW5" th:checked="${task.isDayOfWeek('5')}">СБ
+                                <input type="checkbox" name="dOW6" th:checked="${task.isDayOfWeek('6')}">ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" th:value="${task.points}"
+                                       class="colortext colortext_2" min="0" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" th:value="${task.finepoints}"
+                                       class="colortext colortext_3" id="finepoints" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${task.id}+'upd'" th:form="${task.id}"
+                                name="type" value="update" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${task.id}+'del'" th:form="${task.id}"
+                                name="type" value="delete" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </body>
+        </div> <!--конец конт-ра дня ДОЛГ-->
+
+        <div class="row row-daytime"><!--начало конт-ра дня-->
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">Вечер</label>
+                    <button type="button" form="-4" class="btn btn-add" onClick="AddItem(this)" id="add3">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-4">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="evening">
+                                <input type="hidden" name="id">
+                                <input name="text" type="text" class="colortext colortext_1"
+                                       placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"   >ПН
+                                <input type="checkbox"  name="dOW1" >ВТ
+                                <input type="checkbox"  name="dOW2"  >СР
+                                <input type="checkbox"  name="dOW3" >ЧТ
+                                <input type="checkbox"  name="dOW4"  >ПТ
+                                <input type="checkbox"  name="dOW5" >СБ
+                                <input type="checkbox" name="dOW6" >ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" class="colortext colortext_2" min="0"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" class="colortext colortext_3" id="finepoints"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="update"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="delete"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+            <body th:each="task : ${eveningTasks}">
+            <form role="form" class="form-inline" th:id="${task.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="morning">
+                                <input type="hidden" name="id" th:value="${task.id}">
+                                <input name="text" type="text" th:id="${task.id}+'txt'" th:value="${task.text}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                            <div style="font-size: 60%">
+                                <input type="checkbox" name="dOW0"  th:checked="${task.isDayOfWeek('0')}" >ПН
+                                <input type="checkbox"  name="dOW1" th:checked="${task.isDayOfWeek('1')}">ВТ
+                                <input type="checkbox"  name="dOW2" th:checked="${task.isDayOfWeek('2')}" >СР
+                                <input type="checkbox"  name="dOW3" th:checked="${task.isDayOfWeek('3')}">ЧТ
+                                <input type="checkbox"  name="dOW4" th:checked="${task.isDayOfWeek('4')}" >ПТ
+                                <input type="checkbox"  name="dOW5" th:checked="${task.isDayOfWeek('5')}">СБ
+                                <input type="checkbox" name="dOW6" th:checked="${task.isDayOfWeek('6')}">ВС
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" th:value="${task.points}"
+                                       class="colortext colortext_2" min="0" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="finepoints" th:value="${task.finepoints}"
+                                       class="colortext colortext_3" id="finepoints" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${task.id}+'upd'" th:form="${task.id}"
+                                name="type" value="update" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${task.id}+'del'" th:form="${task.id}"
+                                name="type" value="delete" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </body>
+        </div> <!--конец конт-ра дня ВЕЧЕР-->
+
+
+        <div class="row row-daytime"><!--начало конт-ра дня-->
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">Магазин</label>
+                    <button type="button" form="-5" class="btn btn-add" onClick="AddItem(this)" id="add4">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-5">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="time" value="evening">
+                                <input type="hidden" name="id">
+                                <input name="text" type="text" class="colortext colortext_1"
+                                       placeholder="Текст задания">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" class="colortext colortext_2" min="0"
+                                       placeholder="Количество" value="5" step="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="updateproduct"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="deleteproduct"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <body th:each="product : ${products}">
+            <form role="form" class="form-inline" th:id="${product.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+
+                                <input type="hidden" name="time" value="shop">
+                                <input type="hidden" name="id" th:value="${product.id}">
+                                <input name="text" type="text" th:id="${product.id}+'txt'" th:value="${product.text}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="number" name="points" th:value="${product.price}"
+                                       class="colortext colortext_2" min="0" placeholder="Количество" value="5"
+                                       step="1">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${product.id}+'upd'" th:form="${product.id}"
+                                name="type" value="updateproduct" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${product.id}+'del'" th:form="${product.id}"
+                                name="type" value="deleteproduct" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </body>
+
+        </div> <!--конец конт-ра дня МАГАЗИН-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="row row-daytime"><!--начало конт-ра книг-->
+            <div class="col-sm">
+                <div class="col-md col_dayname">
+                    <label class="label label-daytime">Книги</label>
+                    <button type="button" form="-6" class="btn btn-add" onClick="AddItem(this)" id="add5">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+            <form role="form" class="form-inline" action="settings" method="post" hidden id="-6">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="hidden" name="id">
+                                <input name="name" type="text" class="colortext colortext_1"
+                                       placeholder="Название книги">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="text" name="url" class="colortext colortext_2"
+                                       placeholder="url" value="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" name="type" value="updatebook"
+                                onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" name="type" value="deletebook"
+                                onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+
+            <body th:each="book : ${allBooks}">
+            <form role="form" class="form-inline" th:id="${book.id}" action="settings" method="post">
+                <div class="col-sm col_task">
+                    <div class="tasks">
+                        <div class="form-group">
+                            <div class="col-md">
+
+                                <input type="hidden" name="time" value="book">
+                                <input type="hidden" name="id" th:value="${book.id}">
+                                <input name="name" type="text" th:id="${book.id}+'txt'" th:value="${book.name}"
+                                       class="colortext colortext_1" placeholder="Текст задания">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="points">
+                        <div class="form-group">
+                            <div class="col-md">
+                                <input type="text" name="url" th:value="${book.url}"
+                                       class="colortext colortext_2"  value="5"
+                                       step="1">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-submit" th:id="${book.id}+'upd'" th:form="${book.id}"
+                                name="type" value="updatebook" onclick="document.pressed=this.value()">
+
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </button>
+                        <button type="submit" class="btn btn-delete" th:id="${book.id}+'del'" th:form="${book.id}"
+                                name="type" value="deletebook" onclick="document.pressed=this.value()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            </body>
+
+        </div> <!--конец конт-ра дня книг-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+</body>
+</html>
+

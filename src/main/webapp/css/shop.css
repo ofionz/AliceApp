@@ -1,36 +1,87 @@
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 .container {
     width: 100%;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 20px;
-    font-weight: 900;
     text-transform: uppercase;
-    color: rgb(13, 56, 54);
-    background: url(../img/Hick.jpg);
+    background: url(../img/hp/sp.jpg) fixed center;
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    letter-spacing: 2px;
+    letter-spacing: 0.2em;
+    color: #fff;
+    padding-bottom: 20px;
 }
 
-.shop_head {
-    min-height: 6vh;
+.shop-head {
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    flex-direction: column;
+}
 
-    background: url(../img/Gravity_Falls_logo.svg.png) repeat-x;
+.shop-head p {
+    margin: 0 auto;
+}
+
+.points_balance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 230px;
+    background: url(../img/hp/Hogwartscrest.png) no-repeat center;
     background-size: contain;
+}
+
+.points_all {
+    margin-top: auto;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.points_all, .progress-bar p, .shop-body__item h2 {
+    font-family: 'HP', sans-serif;
+}
+
+.progress-bar p, #labelday, .link {
+    text-shadow: #1a1a1a 2px 2px 0;
+}
+
+.progress-bar p, #labelday, .link {
+    color: rgb(246 246 246 / 94%);
+}
+
+.points_all, .shop-body__item h2 {
+    text-shadow: 0 -3px 0 #f7f7b6, 0 3px 0 #ffd700, -3px 0 #e5e619, 3px 0 #e5e619, -3px -3px 0 #ffc30f, 3px -3px 0 #ffc30f, 3px 3px 0 #ffff00, -3px 3px 0 #ffff00;
+    color: #b20000;
+}
+
+.points_balance__wrap {
+    display: flex;
+}
+
+#labelday, .link, .shop-body__item h2 {
+    letter-spacing: 0.3em;
+}
+
+.link, #labelday {
+    font-size: 13px;
+}
+
+.points__img {
+    width: 100px;
+    margin-top: auto;
+}
+
+.points__img_scale {
+    transform: scale(-1, 1);
 }
 
 dialog {
@@ -53,95 +104,35 @@ dialog {
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 480px) {
-    .points_balance {
-        width: 300px;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 5px;
-        justify-content: center;
-        background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
-        border: 4px solid #000;
-        border-radius: 40px;
-    }
-
-    .points_all {
-        margin-top: 20px;
-        text-align: center;
-        font-family: 'Poiret One', cursive;
-        font-size: 40px;
-        font-weight: 800;
-        color: rgba(255, 226, 0, 0.94);
-        text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
-        #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
-        rgb(13, 56, 54) 9px 5px 0;
-    }
-}
-
-.points_balance {
-    width: 45%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5px;
-    justify-content: center;
-    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
-    border: 4px solid #000;
-    border-radius: 40px;
-}
-
-.points_all {
-    margin-top: 20px;
-    text-align: center;
-    font-family: 'Poiret One', cursive;
-    font-size: 70px;
-    font-weight: 800;
-    color: rgba(255, 226, 0, 0.94);
-    text-shadow: rgb(13, 56, 54) 1px 1px 0, #cad5e2 2px 2px 0,
-    #cad5e2 3px 3px 0, rgb(13, 56, 54) 4px 4px 0,
-    rgb(13, 56, 54) 9px 5px 0;
-}
-
-a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-size: 25px;
-}
-
 .home {
-    align-self: center;
-}
-
-h2, .home {
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    color: #ffffff;
-    background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgba(254, 76, 6, 0.61) 100%);
-    border: 3px dotted rgb(13, 56, 54);
-    border-radius: 40px;
-}
-
-.shop_body {
-    margin-bottom: 50px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    align-self: center;
+    margin: 10px;
+}
+
+.shop-body {
+    padding: 20px;
+    display: grid;
+    grid-gap: 30px 10px;
+    grid-template-columns: auto;
+    margin: 0 auto;
 
 }
 
-.shop_left, .shop_right {
+.shop-body__item {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 85vh;
-    margin: 20px;
+}
+.shop-body__item  h2{
     text-align: center;
-
+    margin-bottom: 10px;
 }
 
-.shop_card, .shop_history {
-    margin: 0px 20px;
+.shop-card {
+    margin: 0 20px;
     padding: 20px;
     color: rgb(255, 72, 0);
     display: flex;
@@ -150,54 +141,43 @@ h2, .home {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.93);
 }
-.shop_card{
-    font-size:15px ;
-}
-.shop_history {
-    flex-direction: column;
-    align-content: center;
-    color: rgb(13, 56, 54);
-    font-size: 12px;
+
+.shop-card {
+    font-size: 15px;
 }
 
-h3 {
-    margin-right: 10px;
-    margin-left: 10px;
-}
 
-.price_field {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-}
-
-.price {
-    margin-right: 5px;
-    padding: 2px;
-    border: 2px black solid;
+.price, .card span:last-child {
+    padding: 5px;
+    border: none;
     border-radius: 5px;
-    background-color: rgb(13, 56, 54);
-    font-size: 20px;
+    background-color: rgb(178 0 0);
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 5px;
     color: rgba(255, 226, 0, 0.94);
+    font-family: inherit;
 }
 
 
 .card {
-    margin: 5px;
     padding: 10px;
     display: flex;
-    justify-content: center;
-    align-items: baseline;
-    border: 2px black solid;
+    color: black;
+    align-items: center;
+    justify-content: space-between;
+    background: #f6f3f3b3;
     flex: 1 1 auto;
-
+    font-size: 15px;
+}
+.card span{
+    font-size: 16px;
+    font-weight: 800;
 }
 
-.history {
-    display: flex;
-    justify-content: space-around;
-    align-items: baseline;
+@font-face {
+    font-family: 'HP';
+    src: url('../fonts/HP.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
