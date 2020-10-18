@@ -11,7 +11,7 @@
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
-    background: url(../img/hp/sp.jpg) fixed center;
+    background: url(../img/sp.jpg) fixed center;
     background-size: cover;
     letter-spacing: 0.2em;
     color: #fff;
@@ -36,7 +36,7 @@
     flex-wrap: wrap;
     justify-content: center;
     height: 230px;
-    background: url(../img/hp/Hogwartscrest.png) no-repeat center;
+    background: url(../img/Hogwartscrest.png) no-repeat center;
     background-size: contain;
 }
 

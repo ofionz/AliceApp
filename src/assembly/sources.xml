@@ -13,14 +13,14 @@ http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 ">
     <fileSets>
         <fileSet>
             <directory>${basedir}/src/</directory>
-            <outputDirectory>/src/</outputDirectory>
+            <outputDirectory></outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
         </fileSet>
         <fileSet>
             <directory>${basedir}/</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory></outputDirectory>
             <includes>
                 <include>LICENSE.txt</include>
                 <include>README.txt</include>
