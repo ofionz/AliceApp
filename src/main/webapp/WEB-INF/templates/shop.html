@@ -58,14 +58,14 @@
 
                 <body th:each="purch : ${purchases}">
                 <div class="history">
+                    <span><td th:text="${purch.date}">2000.10.12</td></span>
                     <h3>
-                        <td th:text="${purch.text}">dgdddgdggddg</td>
+                        <td th:text="${purch.text}">Товар 1</td>
                     </h3>
-                    <span><td th:text="${purch.price}">000</td></span>
+                    <span><td th:text="${purch.price}">100</td></span>
+
                 </div>
-
                 </body>
-
             </div>
 
         </div>

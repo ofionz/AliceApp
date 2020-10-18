@@ -84,9 +84,9 @@ dialog {
 }
 
 .points_balance {
-    width: 370px;
+    width: 350px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 5px;
     justify-content: center;
     background: linear-gradient(to right, rgba(11, 55, 60, 1) 0%, rgba(249, 129, 77, 0.81) 50%, rgba(254, 149, 1, 0.81) 50%, rgba(255, 72, 0, 0.8) 51%, rgba(254, 76, 6, 0.72) 71%, rgb(13, 56, 54) 100%);
